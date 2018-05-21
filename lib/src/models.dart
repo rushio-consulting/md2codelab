@@ -42,7 +42,7 @@ class Step {
   /**
    * How long, on average, it takes to complete the step.
    */
-  int duration = 0;
+  String duration = '0';
 
   /**
    * Indicate if it is the last of the codelab.
