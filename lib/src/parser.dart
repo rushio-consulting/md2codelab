@@ -1,7 +1,7 @@
-import 'models.dart';
 import 'package:html/parser.dart' as html5parser;
 import 'package:html/dom.dart';
 import 'package:intl/intl.dart';
+import 'models.dart';
 
 /// Check if the given [node] is a duration
 bool _isDuration(Element node) =>
@@ -25,11 +25,15 @@ bool _isAlertDanger(Element node) =>
 
 /// Get the define duration form the given [innerHtml]
 String _getDuration(String innerHtml) {
-  DateFormat format = new DateFormat("H:mm");
-  String text = innerHtml.replaceFirst("<duration>", "");
-  text = text.replaceFirst("</duration>", "");
+  DateFormat format;
+  String text;
+  DateTime datetime;
 
-  DateTime datetime = format.parse(text.trim());
+  format = new DateFormat("H:mm");
+  text = innerHtml.replaceFirst("<duration>", "");
+  text = text.replaceFirst("</duration>", "");
+  datetime = format.parse(text.trim());
+
   return datetime.minute.toString();
 }
 
@@ -59,13 +63,20 @@ String _getAlertDanger(String innerHtml) => """
 
 /// Parse the given [htmlContent] to a codelab
 Codelab parse(String htmlContent) {
-  Document document = html5parser.parse(htmlContent);
-  Element body = document.body;
-
-  int stepSize = body.querySelectorAll("h2").length;
-  int index = 0;
+  Document document;
+  Element body;
+  int stepSize;
+  int index;
   Step currentStep;
-  List<Step> steps = [];
+  List<Step> steps;
+  String title;
+
+  document = html5parser.parse(htmlContent);
+  body = document.body;
+  title = body.querySelector("h1").innerHtml;
+  stepSize = body.querySelectorAll("h2").length;
+  index = 0;
+  steps = [];
 
   body.nodes.forEach((node) {
     if (node is Element) {
@@ -99,8 +110,6 @@ Codelab parse(String htmlContent) {
       }
     }
   });
-
-  String title = body.querySelector("h1").innerHtml;
 
   return new Codelab(title, steps);
 }

@@ -1,21 +1,24 @@
 import 'package:html/dom.dart';
 
+/// Model wrapper for the
+/// html content related to the markdown content
+class MdDocument {
+  final dynamic metadata;
+  final String htmlContent;
+
+  MdDocument(this.metadata, this.htmlContent);
+}
+
 /// Model related to
 /// [google codelab definition](https://github.com/googlecodelabs/codelab-components/blob/master/google-codelab.html)
 class Codelab {
-  /**
-   * Codelab title
-   */
+  /// Codelab title
   final String title;
 
-  /**
-   * Steps of the codelab
-   */
+  /// Steps of the codelab
   final List<Step> steps;
 
-  /**
-   * Feedback URL for the codelab bug repors.
-   */
+  /// Feedback URL for the codelab bug repors.
   String feedbackLink;
 
   Codelab(this.title, this.steps);
@@ -33,25 +36,16 @@ class Codelab {
 /// Model related to
 /// [google codelab step definition](https://github.com/googlecodelabs/codelab-components/blob/master/google-codelab-step.html).
 class Step {
-
-  /**
-   * Title of this step.
-   */
+  /// Title of this step.
   String label = '';
 
-  /**
-   * How long, on average, it takes to complete the step.
-   */
+  /// How long, on average, it takes to complete the step.
   String duration = '0';
 
-  /**
-   * Indicate if it is the last of the codelab.
-   */
-  bool isLast = false;
+  /// Indicate if it is the last of the codelab.
+  var isLast = false;
 
-  /**
-   * The content as HTMLElement
-   */
+  /// The content as HTMLElement
   Element content = new Element.html("<br/>");
 
   Step(this.label);
