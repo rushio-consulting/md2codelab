@@ -48,8 +48,12 @@ String _renderDocument(String title, String webComponent) => '''
 String render(Codelab codelab) {
   var buffer = new StringBuffer();
 
-  buffer.write("<google-codelab title=\"${codelab
-      .title}\" feedback-link=\"${codelab.feedbackLink}\">");
+  if (codelab.feedbackLink != null && codelab.feedbackLink.isNotEmpty) {
+    buffer.write("<google-codelab title=\"${codelab
+        .title}\" feedback-link=\"${codelab.feedbackLink}\">");
+  } else {
+    buffer.write("<google-codelab title=\"${codelab.title}\">");
+  }
 
   codelab.steps.forEach((step) {
     buffer.write("<google-codelab-step "

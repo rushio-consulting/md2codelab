@@ -1,0 +1,274 @@
+  <!doctype html>
+  <html>
+  <head>
+      <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+      <meta name="theme-color" content="#4F7DC9">
+      <meta charset="UTF-8">
+      <title>TEST Codelab Markdown Cheatsheet</title>
+      <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+      <link rel="import" href="elements/codelab.html">
+      <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
+      <style is="custom-style">
+          body {
+              font-family: "Roboto",sans-serif;
+              background: var(--google-codelab-background, #F8F9FA);
+          }
+          .oi-custom {
+              font-size: 28px;
+              margin-right: 20px;
+          }
+          .flexbox-it
+          {
+              display: flex;
+          }
+           #main-toolbar
+        {
+            background: #FFFFFF
+            box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15);
+            color: #3C4043;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+            padding: 0 16px;
+        }
+      </style>
+  </head>
+  <body unresolved class="fullbleed">
+    <google-codelab title="TEST Codelab Markdown Cheatsheet"><google-codelab-step label="Alert Boxes" duration="0" ><pre><code class="language-markdown">&lt;alert-info&gt;Some information&lt;/alert-info&gt;
+</code></pre><p>renders to this :</p><p>  <div class="alert alert-primary flexbox-it" role="alert">
+    <div> <span title="Note" class="oi oi-info oi-custom"></span></div>
+    <div><alert-info>Some information</alert-info></div>
+  </div>
+</p><pre><code class="language-markdown">&lt;alert-warning&gt;Some warning&lt;/alert-warning&gt;
+</code></pre><p>renders to this :</p><p>  <div class="alert alert-warning flexbox-it" role="alert">
+    <div> <span title="Warning" class=" oi oi-warning oi-custom"></span></div>
+    <div><alert-warning>Some warning</alert-warning></div>
+  </div>
+</p><pre><code class="language-markdown">&lt;alert-danger&gt;Some caution&lt;/alert-danger&gt;
+</code></pre><p>renders to this :</p><p>  <div class="alert alert-danger flexbox-it" role="alert">
+    <div> <span title="Important" class=" oi oi-fire oi-custom"></span></div>
+    <div><alert-danger>Some caution</alert-danger></div>
+  </div>
+</p> </google-codelab-step><google-codelab-step label="Headings" duration="0" ><p>Headings from <code>h1</code> through <code>h6</code> are constructed with a <code>#</code> for each level:</p><pre><code class="language-markdown"># h1 Heading
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
+</code></pre><p>HTML:</p><pre><code class="language-html">&lt;h1&gt;h1 Heading&lt;/h1&gt;
+&lt;h2&gt;h2 Heading&lt;/h2&gt;
+&lt;h3&gt;h3 Heading&lt;/h3&gt;
+&lt;h4&gt;h4 Heading&lt;/h4&gt;
+&lt;h5&gt;h5 Heading&lt;/h5&gt;
+&lt;h6&gt;h6 Heading&lt;/h6&gt;
+</code></pre><br><br><br> </google-codelab-step><google-codelab-step label="Horizontal Rules" duration="0" ><p>The HTML <code>&lt;hr&gt;</code> element is for creating a "thematic break" between paragraph-level elements. In markdown, you can create a <code>&lt;hr&gt;</code> with any of the following:</p><ul><li><code>___</code>: three consecutive underscores</li><li><code>---</code>: three consecutive dashes</li><li><code>***</code>: three consecutive asterisks</li></ul><p>renders to:</p><hr><hr><hr><br><br><br> </google-codelab-step><google-codelab-step label="Body Copy" duration="0" ><p>Body copy written as normal, plain text will be wrapped with <code>&lt;p&gt;&lt;/p&gt;</code> tags in the rendered HTML.</p><p>So this body copy:</p><pre><code class="language-markdown">Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.
+</code></pre><p>renders to this HTML:</p><pre><code class="language-html">&lt;p&gt;Lorem ipsum dolor sit amet, graecis denique ei vel, at duo primis mandamus. Et legere ocurreret pri, animal tacimates complectitur ad cum. Cu eum inermis inimicus efficiendi. Labore officiis his ex, soluta officiis concludaturque ei qui, vide sensibus vim ad.&lt;/p&gt;
+</code></pre><br><br><br> </google-codelab-step><google-codelab-step label="Emphasis" duration="0" ><h3>Bold</h3><p>For emphasizing a snippet of text with a heavier font-weight.</p><p>The following snippet of text is <strong>rendered as bold text</strong>.</p><pre><code class="language-markdown">**rendered as bold text**
+</code></pre><p>renders to:</p><p><strong>rendered as bold text</strong></p><p>and this HTML</p><pre><code class="language-html">&lt;strong&gt;rendered as bold text&lt;/strong&gt;
+</code></pre><h3>Italics</h3><p>For emphasizing a snippet of text with italics.</p><p>The following snippet of text is <em>rendered as italicized text</em>.</p><pre><code class="language-markdown">_rendered as italicized text_
+</code></pre><p>renders to:</p><p><em>rendered as italicized text</em></p><p>and this HTML:</p><pre><code class="language-html">&lt;em&gt;rendered as italicized text&lt;/em&gt;
+</code></pre><h3>strikethrough</h3><p>In GFM you can do strickthroughs. </p><pre><code class="language-markdown">~~Strike through this text.~~
+</code></pre><p>Which renders to:</p><p>~~Strike through this text.~~</p><br><br><br> </google-codelab-step><google-codelab-step label="Blockquotes" duration="0" ><p>For quoting blocks of content from another source within your document.</p><p>Add <code>&gt;</code> before any text you want to quote. </p><pre><code class="language-markdown">Add `&gt;` before any text you want to quote. 
+</code></pre><p>Renders to:</p><blockquote>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p></blockquote><p>and this HTML:</p><pre><code class="language-html">&lt;blockquote&gt;
+  &lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.&lt;/p&gt;
+&lt;/blockquote&gt;
+</code></pre><p>Blockquotes can also be nested:</p><pre><code class="language-markdown">&gt; Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. 
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. 
+&gt;&gt; Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor 
+odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.
+&gt;&gt;&gt; Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. 
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. 
+</code></pre><p>Renders to:</p><blockquote>
+<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. 
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. </p>
+<blockquote>
+<p>Sed adipiscing elit vitae augue consectetur a gravida nunc vehicula. Donec auctor 
+odio non est accumsan facilisis. Aliquam id turpis in dolor tincidunt mollis ac eu diam.</p>
+<blockquote>
+<p>Donec massa lacus, ultricies a ullamcorper in, fermentum sed augue. 
+Nunc augue augue, aliquam non hendrerit ac, commodo vel nisi. </p></blockquote></blockquote></blockquote><br><br><br> </google-codelab-step><google-codelab-step label="Lists" duration="0" ><h3>Unordered</h3><p>A list of items in which the order of the items does not explicitly matter.</p><p>You may use any of the following symbols to denote bullets for each list item:</p><pre><code class="language-markdown">* valid bullet
+- valid bullet
++ valid bullet
+</code></pre><p>For example</p><pre><code class="language-markdown">+ Lorem ipsum dolor sit amet
++ Consectetur adipiscing elit
++ Integer molestie lorem at massa
++ Facilisis in pretium nisl aliquet
++ Nulla volutpat aliquam velit
+  - Phasellus iaculis neque
+  - Purus sodales ultricies
+  - Vestibulum laoreet porttitor sem
+  - Ac tristique libero volutpat at
++ Faucibus porta lacus fringilla vel
++ Aenean sit amet erat nunc
++ Eget porttitor lorem
+</code></pre><p>Renders to:</p><ul><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Integer molestie lorem at massa</li><li>Facilisis in pretium nisl aliquet</li><li>Nulla volutpat aliquam velit<ul><li>Phasellus iaculis neque</li><li>Purus sodales ultricies</li><li>Vestibulum laoreet porttitor sem</li><li>Ac tristique libero volutpat at</li></ul></li><li>Faucibus porta lacus fringilla vel</li><li>Aenean sit amet erat nunc</li><li>Eget porttitor lorem</li></ul><p>And this HTML</p><pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;
+  &lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
+  &lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;
+  &lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;
+  &lt;li&gt;Nulla volutpat aliquam velit
+    &lt;ul&gt;
+      &lt;li&gt;Phasellus iaculis neque&lt;/li&gt;
+      &lt;li&gt;Purus sodales ultricies&lt;/li&gt;
+      &lt;li&gt;Vestibulum laoreet porttitor sem&lt;/li&gt;
+      &lt;li&gt;Ac tristique libero volutpat at&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Faucibus porta lacus fringilla vel&lt;/li&gt;
+  &lt;li&gt;Aenean sit amet erat nunc&lt;/li&gt;
+  &lt;li&gt;Eget porttitor lorem&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><h3>Ordered</h3><p>A list of items in which the order of items does explicitly matter.</p><pre><code class="language-markdown">1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+4. Facilisis in pretium nisl aliquet
+5. Nulla volutpat aliquam velit
+6. Faucibus porta lacus fringilla vel
+7. Aenean sit amet erat nunc
+8. Eget porttitor lorem
+</code></pre><p>Renders to:</p><ol><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Integer molestie lorem at massa</li><li>Facilisis in pretium nisl aliquet</li><li>Nulla volutpat aliquam velit</li><li>Faucibus porta lacus fringilla vel</li><li>Aenean sit amet erat nunc</li><li>Eget porttitor lorem</li></ol><p>And this HTML:</p><pre><code class="language-html">&lt;ol&gt;
+  &lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;
+  &lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
+  &lt;li&gt;Integer molestie lorem at massa&lt;/li&gt;
+  &lt;li&gt;Facilisis in pretium nisl aliquet&lt;/li&gt;
+  &lt;li&gt;Nulla volutpat aliquam velit&lt;/li&gt;
+  &lt;li&gt;Faucibus porta lacus fringilla vel&lt;/li&gt;
+  &lt;li&gt;Aenean sit amet erat nunc&lt;/li&gt;
+  &lt;li&gt;Eget porttitor lorem&lt;/li&gt;
+&lt;/ol&gt;
+</code></pre><p><strong>TIP</strong>: If you just use <code>1.</code> for each number, GitHub will automatically number each item. For example:</p><pre><code class="language-markdown">1. Lorem ipsum dolor sit amet
+1. Consectetur adipiscing elit
+1. Integer molestie lorem at massa
+1. Facilisis in pretium nisl aliquet
+1. Nulla volutpat aliquam velit
+1. Faucibus porta lacus fringilla vel
+1. Aenean sit amet erat nunc
+1. Eget porttitor lorem
+</code></pre><p>Renders to:</p><ol><li>Lorem ipsum dolor sit amet</li><li>Consectetur adipiscing elit</li><li>Integer molestie lorem at massa</li><li>Facilisis in pretium nisl aliquet</li><li>Nulla volutpat aliquam velit</li><li>Faucibus porta lacus fringilla vel</li><li>Aenean sit amet erat nunc</li><li>Eget porttitor lorem</li></ol><br><br><br> </google-codelab-step><google-codelab-step label="Code" duration="0" ><h3>Inline code</h3><p>Wrap inline snippets of code with <code>`</code>.</p><p>For example, <code>&lt;section&gt;&lt;/section&gt;</code> should be wrapped as "inline".</p><pre><code class="language-html">For example, `&lt;section&gt;&lt;/section&gt;` should be wrapped as "inline".
+</code></pre><h3>Indented code</h3><p>Or indent several lines of code by at least four spaces, as in:</p><pre><code class="language-js">    // Some comments
+    line 1 of code
+    line 2 of code
+    line 3 of code
+</code></pre><pre><code>// Some comments
+line 1 of code
+line 2 of code
+line 3 of code
+</code></pre><h3>Block code "fences"</h3><p>Use "fences"  <code>```</code> to block in multiple lines of code. </p><pre>``` html
+Sample text here...
+```
+</pre><pre><code>Sample text here...
+</code></pre><p>HTML:</p><pre><code class="language-html">&lt;pre&gt;
+  &lt;p&gt;Sample text here...&lt;/p&gt;
+&lt;/pre&gt;
+</code></pre><h3>Syntax highlighting</h3><p>GFM, or "GitHub Flavored Markdown" also supports syntax highlighting. To activate it, simply add the file extension of the language you want to use directly after the first code "fence", <code>``` js</code>, and syntax highlighting will automatically be applied in the rendered HTML. For example, to apply syntax highlighting to JavaScript code:</p><pre>``` javascript
+grunt.initConfig({
+  assemble: {
+    options: {
+      assets: 'docs/assets',
+      data: 'src/data/*.{json,yml}',
+      helpers: 'src/custom-helpers.js',
+      partials: ['src/partials/**/*.{hbs,md}']
+    },
+    pages: {
+      options: {
+        layout: 'default.hbs'
+      },
+      files: {
+        './': ['src/templates/pages/index.hbs']
+      }
+    }
+  }
+};
+```
+</pre><p>Renders to:</p><pre><code class="language-javascript">grunt.initConfig({
+  assemble: {
+    options: {
+      assets: 'docs/assets',
+      data: 'src/data/*.{json,yml}',
+      helpers: 'src/custom-helpers.js',
+      partials: ['src/partials/**/*.{hbs,md}']
+    },
+    pages: {
+      options: {
+        layout: 'default.hbs'
+      },
+      files: {
+        './': ['src/templates/pages/index.hbs']
+      }
+    }
+  }
+};
+</code></pre><p>And this complicated HTML:</p><pre><code class="language-xml">&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nx"&gt;grunt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;initConfig&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;
+  &lt;span class="nx"&gt;assemble&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nx"&gt;options&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;assets&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'docs/assets'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nx"&gt;data&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'src/data/*.{json,yml}'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nx"&gt;helpers&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'src/custom-helpers.js'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="nx"&gt;partials&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'src/partials/**/*.{hbs,md}'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="nx"&gt;pages&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+      &lt;span class="nx"&gt;options&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="nx"&gt;layout&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;'default.hbs'&lt;/span&gt;
+      &lt;span class="p"&gt;},&lt;/span&gt;
+      &lt;span class="nx"&gt;files&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s1"&gt;'./'&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'src/templates/pages/index.hbs'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+      &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+</code></pre><br><br><br> </google-codelab-step><google-codelab-step label="Tables" duration="0" ><p>Tables are created by adding pipes as dividers between each cell, and by adding a line of dashes (also separated by bars) beneath the header. Note that the pipes do not need to be vertically aligned.</p><pre><code class="language-markdown">| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+</code></pre><p>Renders to:</p><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td>data</td><td>path to data files to supply the data that will be passed into templates.</td></tr><tr><td>engine</td><td>engine to be used for processing templates. Handlebars is the default.</td></tr><tr><td>ext</td><td>extension to be used for dest files.</td></tr></tbody></table><p>And this HTML:</p><pre><code class="language-html">&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Option&lt;/th&gt;
+    &lt;th&gt;Description&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;data&lt;/td&gt;
+    &lt;td&gt;path to data files to supply the data that will be passed into templates.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;engine&lt;/td&gt;
+    &lt;td&gt;engine to be used for processing templates. Handlebars is the default.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;ext&lt;/td&gt;
+    &lt;td&gt;extension to be used for dest files.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre><h3>Right aligned text</h3><p>Adding a colon on the right side of the dashes below any heading will right align text for that column.</p><pre><code class="language-markdown">| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+</code></pre><table><thead><tr><th style="text-align: right;">Option</th><th style="text-align: right;">Description</th></tr></thead><tbody><tr><td style="text-align: right;">data</td><td style="text-align: right;">path to data files to supply the data that will be passed into templates.</td></tr><tr><td style="text-align: right;">engine</td><td style="text-align: right;">engine to be used for processing templates. Handlebars is the default.</td></tr><tr><td style="text-align: right;">ext</td><td style="text-align: right;">extension to be used for dest files.</td></tr></tbody></table><br><br><br> </google-codelab-step><google-codelab-step label="Links" duration="0" ><h3>Basic link</h3><pre><code class="language-markdown">[Assemble](http://assemble.io)
+</code></pre><p>Renders to (hover over the link, there is no tooltip):</p><p><a href="http://assemble.io">Assemble</a></p><p>HTML:</p><pre><code class="language-html">&lt;a href="http://assemble.io"&gt;Assemble&lt;/a&gt;
+</code></pre><h3>Add a title</h3><pre><code class="language-markdown">[Upstage](https://github.com/upstage/ "Visit Upstage!")
+</code></pre><p>Renders to (hover over the link, there should be a tooltip):</p><p><a href="https://github.com/upstage/" title="Visit Upstage!">Upstage</a></p><p>HTML:</p><pre><code class="language-html">&lt;a href="https://github.com/upstage/" title="Visit Upstage!"&gt;Upstage&lt;/a&gt;
+</code></pre><h3>Named Anchors</h3><p>Named anchors enable you to jump to the specified anchor point on the same page. For example, each of these chapters:</p><pre><code class="language-markdown"># Table of Contents
+  * [Chapter 1](#chapter-1)
+  * [Chapter 2](#chapter-2)
+  * [Chapter 3](#chapter-3)
+</code></pre><p>will jump to these sections:</p><pre><code class="language-markdown">## Chapter 1 &lt;a id="chapter-1"&gt;&lt;/a&gt;
+Content for chapter one.
+
+## Chapter 2 &lt;a id="chapter-2"&gt;&lt;/a&gt;
+Content for chapter one.
+
+## Chapter 3 &lt;a id="chapter-3"&gt;&lt;/a&gt;
+Content for chapter one.
+</code></pre><p><strong>NOTE</strong> that specific placement of the anchor tag seems to be arbitrary. They are placed inline here since it seems to be unobtrusive, and it works.</p><br><br><br> </google-codelab-step><google-codelab-step label="Images" duration="0" ><p>Images have a similar syntax to links but include a preceding exclamation point.</p><pre><code class="language-markdown">![Minion](http://octodex.github.com/images/minion.png)
+</code></pre><p><img alt="Minion" src="http://octodex.github.com/images/minion.png"></p><p>or</p><pre><code class="language-markdown">![Alt text](http://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+</code></pre><p><img alt="Alt text" src="http://octodex.github.com/images/stormtroopocat.jpg" title="The Stormtroopocat"></p><p>Like links, Images also have a footnote style syntax</p><pre><code class="language-markdown">![Alt text][id]
+</code></pre><p><img alt="Alt text" src="http://octodex.github.com/images/dojocat.jpg" title="The Dojocat"></p><p>With a reference later in the document defining the URL location:</p><pre><code>[id]: http://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+</code></pre> </google-codelab-step></google-codelab>
+  </body>
+  </html>
