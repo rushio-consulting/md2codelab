@@ -1,0 +1,17 @@
+name: md2codelab
+description: A simple tool to convert .md to google codelabA sample command-line application.
+version: 0.0.1
+author: bwnyasse
+
+environment:
+  sdk: '>=2.0.0-dev.51.0 <2.0.0'
+
+dependencies:
+  markdown: "^2.0.0"
+  html: any
+  intl: "^0.15.6"
+
+dev_dependencies:
+  build_runner: ^0.8.7
+  build_test: ^0.10.0
+
