@@ -12,6 +12,7 @@ dependencies:
   intl: "^0.15.6"
   resource: "^2.1.2"
   quiver: "^0.29.0+1"
+  args: "^1.4.3"
 
 dev_dependencies:
   build_runner: ^0.8.7
