@@ -8,6 +8,11 @@ bool _isDuration(Element node) =>
     node.innerHtml.startsWith("<duration>") &&
     node.innerHtml.endsWith("</duration>");
 
+/// Check if the given [node] is an info success
+bool _isAlertSuccess(Element node) =>
+    node.innerHtml.startsWith("<alert-success>") &&
+        node.innerHtml.endsWith("</alert-success>");
+
 /// Check if the given [node] is an info alert
 bool _isAlertInfo(Element node) =>
     node.innerHtml.startsWith("<alert-info>") &&
@@ -36,6 +41,14 @@ String _getDuration(String innerHtml) {
 
   return datetime.minute.toString();
 }
+
+/// Get the define success alert form the given [innerHtml]
+String _getAlertSuccess(String innerHtml) => """
+  <div class="alert alert-success flexbox-it" role="alert">
+    <div> <span title="Success" class="oi oi-check oi-custom"></span></div>
+    <div>$innerHtml</div>
+  </div>
+""";
 
 /// Get the define info alert form the given [innerHtml]
 String _getAlertInfo(String innerHtml) => """
@@ -92,6 +105,10 @@ Codelab parse(String htmlContent) {
         if (_isDuration(node)) {
           currentStep.duration = _getDuration(node.innerHtml);
         } else {
+          // alert success
+          if (_isAlertSuccess(node)) {
+            node.innerHtml = _getAlertSuccess(node.innerHtml);
+          }
           // alert info
           if (_isAlertInfo(node)) {
             node.innerHtml = _getAlertInfo(node.innerHtml);
