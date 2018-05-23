@@ -26,17 +26,26 @@ String _renderDocument(String title, String webComponent) => '''
           {
               display: flex;
           }
-           #main-toolbar
-        {
-            background: #FFFFFF
-            box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15);
-            color: #3C4043;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 64px;
-            padding: 0 16px;
-        }
+          #main-toolbar
+          {
+              background: #FFFFFF
+              box-shadow: 0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15);
+              color: #3C4043;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              height: 64px;
+              padding: 0 16px;
+          }
+          blockquote 
+          {
+              font-style: normal;
+              font-size: 12px;
+              margin-left: 32px;
+              font-family: Consolas, "Times New Roman", Verdana;
+              border-left: 4px solid #CCC;
+              padding-left: 8px;
+          }
       </style>
   </head>
   <body unresolved class="fullbleed">
