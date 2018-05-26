@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Développer en local un codelab",
+        "description": "Décrit les étapes d'ajout et de dev local d'un codelab.",
+        "category": "1",
+        "duration": "15 min",
+        "path": "md/dev_codelab.html"
+    },
+    {
+        "name": "Releaser à la fin du sprint",
+        "description": "Décrit les étapes de la release de nos repos.",
+        "category": "1",
+        "duration": "",
+        "path": "md/process_releaser.html"
+    },
+    {
+        "name": "Demande de VM pour le cluster de la forge",
+        "description": "Faire une demande de VM et l'ajouter au cluster de la forge v2",
+        "category": "2",
+        "duration": "45 min",
+        "path": "md/forge_demande_vm.html"
+    },
+    {
+        "name": "Guide d'écriture markdown pour un codelab",
+        "description": "Décrit la syntaxe markdown pour le codelab",
+        "category": "1",
+        "duration": "",
+        "path": "md/codelab_md_cheatsheet.html"
+    },
+    {
+        "name": "Demande de VM pour une plateforme PRODIGE",
+        "description": "Faire une demande de VM pour installer une plateforme PRODIGE",
+        "category": "1",
+        "duration": "15 min",
+        "path": "md/prodige_demande_vm.html"
+    }
+]

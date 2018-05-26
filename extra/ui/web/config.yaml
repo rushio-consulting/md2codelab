@@ -1,0 +1,33 @@
+categories: # Categories label
+    1: process
+    2: factory
+    3: database
+    4: web
+
+categories_colors: # colors in Hex
+    1: 1A73E8
+    2: 02569B
+    3: 71B958
+    4: E37400
+
+categories_icons: # Icons must be in icons/
+    1: process.svg
+    2: factory.svg
+    3: database.svg
+    4: web.svg
+
+
+messages:
+  name: Codelabs
+  welcome: Welcome to Codelabs !
+  description: >
+    Google Developers Codelabs provide a guided, tutorial,
+    hands-on coding experience. Most codelabs will step you through
+    the process of building a small application, or adding a new feature to an existing application.
+     They cover a wide range of topics such as Android Wear,
+     Google Compute Engine, Project Tango, and Google APIs on iOS.
+  author: Diff Tech PRODIGE
+  start_button: Démarrer
+
+
+
