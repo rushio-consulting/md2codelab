@@ -1,0 +1,23 @@
+name: md2codelab_ui
+description: UI 
+version: 0.0.1
+author: bwnyasse
+
+environment:
+  sdk: '>=2.0.0-dev.52.0 <2.0.0'
+
+dependencies:
+  angular: 5.0.0-alpha+12
+  angular_components: 0.9.0-alpha+12
+  angular_forms: 2.0.0-alpha+4
+  js: ^0.6.0
+  build_config: ^0.2.6
+  yaml: "^2.1.14"
+  quiver: '>=0.29.0 <0.30.0'
+
+dev_dependencies:
+  angular_test: ^2.0.0-alpha+9
+  build_runner: ^0.8.7
+  build_test: ^0.10.0
+  build_web_compilers: ^0.3.7
+  test: ^0.12.30
