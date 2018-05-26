@@ -1,0 +1,78 @@
+<a class="github-fork-ribbon" href="https://url.to-your.repo" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+
+<header class="material-header">
+    <div class="material-header-row">
+        <span class="material-header-title">{{ appName }}</span>
+        <div class="material-spacer"></div>
+        <nav class="material-navigation">
+            <material-input id="search-button" label="search"
+                            leadingGlyph="search">
+            </material-input>
+        </nav>
+    </div>
+</header>
+
+<div id="main">
+
+    <article>
+        <div class="wrapper">
+
+            <div class="wrapper-section">
+                <h2> {{ appWelcome }} </h2>
+                <section id="wrapper-section-description">
+                    {{ appDescription }}
+                </section>
+            </div>
+
+            <div class="wrapper-section">
+                <div class="wrapper-section-control">
+                    <div>
+                    </div>
+                    <div>
+                        <material-dropdown-select
+                                [buttonText]="selectionCategoryLabel"
+                                [selection]="selectionCategoryModel"
+                                [options]="selectionCategoriesOptions"
+                                [width]="width"
+                                [deselectOnActivate]="deselectOnActivate"
+                                [deselectLabel]="deselectLabel">
+                        </material-dropdown-select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wrapper-section">
+                <div class="cards">
+                    <div class="card" *ngFor="let data of filteredDatas; let i=index">
+                        <div class="card-header" [style.background]="getCategoryBg(data.category)">
+                            <div id="icon" class="category-icon"  [style.background-image]="getCategoryIcon(data.category)"></div>
+                            <div *ngIf="data.duration.isNotEmpty"  class="card-duration">
+                                <img src="https://codelabs.developers.google.com/images/schedule.svg">
+                                <span> {{data.duration}} </span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-title">
+                                <h4>{{ data.name }}</h4>
+                            </div>
+                            <div class="card-description">
+                                <p>{{ data.description }}</p>
+                            </div>
+                            <div class="card-footer">
+                            <material-button raised class="launch-button">
+                                {{ appStartButton }}
+                            </material-button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </article>
+
+    <nav></nav>
+    <aside></aside>
+</div>
+<footer></footer>
