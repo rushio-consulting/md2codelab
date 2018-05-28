@@ -13,6 +13,7 @@ dependencies:
   resource: "^2.1.2"
   quiver: "^0.29.0+1"
   args: "^1.4.3"
+  yaml: "^2.1.14"
 
 dev_dependencies:
   build_runner: ^0.8.7

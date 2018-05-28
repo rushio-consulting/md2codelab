@@ -3,30 +3,48 @@ import 'package:html/dom.dart';
 import 'package:intl/intl.dart';
 import 'models.dart';
 
+const String METADATA = "metadata";
+const String DURATION = "duration";
+const String ALTER_SUCCESS = "alert-success";
+const String ALTER_INFO = "alert-info";
+const String ALTER_WARNING = "alert-warning";
+const String ALTER_DANGER = "alert-danger";
+
+/// Check if the given [node] is a metadata
+bool _isMetadata(Element node) =>
+    (node.innerHtml.startsWith("<$METADATA>") &&
+        node.innerHtml.endsWith("</$METADATA>")) ||
+    node.localName == "metadata";
+
 /// Check if the given [node] is a duration
 bool _isDuration(Element node) =>
-    node.innerHtml.startsWith("<duration>") &&
-    node.innerHtml.endsWith("</duration>");
+    node.innerHtml.startsWith("<$DURATION>") &&
+    node.innerHtml.endsWith("</$DURATION>");
 
 /// Check if the given [node] is an info success
 bool _isAlertSuccess(Element node) =>
-    node.innerHtml.startsWith("<alert-success>") &&
-        node.innerHtml.endsWith("</alert-success>");
+    node.innerHtml.startsWith("<$ALTER_SUCCESS>") &&
+    node.innerHtml.endsWith("</$ALTER_SUCCESS>");
 
 /// Check if the given [node] is an info alert
 bool _isAlertInfo(Element node) =>
-    node.innerHtml.startsWith("<alert-info>") &&
-    node.innerHtml.endsWith("</alert-info>");
+    node.innerHtml.startsWith("<$ALTER_INFO>") &&
+    node.innerHtml.endsWith("</$ALTER_INFO>");
 
 /// Check if the given [node] is a warning alert
 bool _isAlertWarning(Element node) =>
-    node.innerHtml.startsWith("<alert-warning>") &&
-    node.innerHtml.endsWith("</alert-warning>");
+    node.innerHtml.startsWith("<$ALTER_WARNING>") &&
+    node.innerHtml.endsWith("</$ALTER_WARNING>");
 
 /// Check if the given [node] is a danger alert
 bool _isAlertDanger(Element node) =>
-    node.innerHtml.startsWith("<alert-danger>") &&
-    node.innerHtml.endsWith("</alert-danger>");
+    node.innerHtml.startsWith("<$ALTER_DANGER>") &&
+    node.innerHtml.endsWith("</$ALTER_DANGER>");
+
+/// Get the define metadata form the given [innerHtml]
+String _getMetadata(String innerHtml) {
+  return innerHtml.trim();
+}
 
 /// Get the define duration form the given [innerHtml]
 String _getDuration(String innerHtml) {
@@ -35,8 +53,8 @@ String _getDuration(String innerHtml) {
   DateTime datetime;
 
   format = new DateFormat("H:mm");
-  text = innerHtml.replaceFirst("<duration>", "");
-  text = text.replaceFirst("</duration>", "");
+  text = innerHtml.replaceFirst("<$DURATION>", "");
+  text = text.replaceFirst("</$DURATION>", "");
   datetime = format.parse(text.trim());
 
   return datetime.minute.toString();
@@ -82,51 +100,67 @@ Codelab parse(String htmlContent) {
   int index;
   Step currentStep;
   List<Step> steps;
+  List<StepSearch> stepSearch;
   String title;
+  String metadata;
 
+  metadata= "";
   document = html5parser.parse(htmlContent);
   body = document.body;
   title = body.querySelector("h1").innerHtml;
   stepSize = body.querySelectorAll("h2").length;
   index = 0;
   steps = [];
+  stepSearch = [];
 
   body.nodes.forEach((node) {
     if (node is Element) {
-      if (node.localName == "h2") {
-        index++;
-        currentStep = new Step(node.innerHtml);
-        if (index == stepSize) {
-          currentStep.isLast = true;
-        }
-        steps.add(currentStep);
-      } else if (currentStep != null) {
-        // Duration
-        if (_isDuration(node)) {
-          currentStep.duration = _getDuration(node.innerHtml);
-        } else {
-          // alert success
-          if (_isAlertSuccess(node)) {
-            node.innerHtml = _getAlertSuccess(node.innerHtml);
+      if (_isMetadata(node)) {
+        metadata = _getMetadata(node.innerHtml);
+      } else {
+        if (node.localName == "h2") {
+          index++;
+          if (currentStep != null) {
+            stepSearch.add(currentStep.getStepSearch(title));
           }
-          // alert info
-          if (_isAlertInfo(node)) {
-            node.innerHtml = _getAlertInfo(node.innerHtml);
+          currentStep = new Step(node.innerHtml);
+          currentStep.order = index.toString();
+          if (index == stepSize) {
+            currentStep.isLast = true;
           }
-          // alert warning
-          if (_isAlertWarning(node)) {
-            node.innerHtml = _getAlertWarning(node.innerHtml);
-          }
-          // alert danger
-          if (_isAlertDanger(node)) {
-            node.innerHtml = _getAlertDanger(node.innerHtml);
-          }
+          steps.add(currentStep);
 
-          currentStep.content.append(node.clone(true));
+        } else if (currentStep != null) {
+          if (_isDuration(node)) {
+            currentStep.duration = _getDuration(node.innerHtml);
+          } else {
+            // alert success
+            if (_isAlertSuccess(node)) {
+              node.innerHtml = _getAlertSuccess(node.innerHtml);
+            }
+            // alert info
+            if (_isAlertInfo(node)) {
+              node.innerHtml = _getAlertInfo(node.innerHtml);
+            }
+            // alert warning
+            if (_isAlertWarning(node)) {
+              node.innerHtml = _getAlertWarning(node.innerHtml);
+            }
+            // alert danger
+            if (_isAlertDanger(node)) {
+              node.innerHtml = _getAlertDanger(node.innerHtml);
+            }
+            currentStep.content.append(node.clone(true));
+          }
         }
       }
     }
   });
 
-  return new Codelab(title, steps);
+  // Last one for search
+  if (currentStep != null && currentStep.isLast) {
+    stepSearch.add(currentStep.getStepSearch(title));
+  }
+
+  return new Codelab(metadata, title, steps, stepSearch);
 }
