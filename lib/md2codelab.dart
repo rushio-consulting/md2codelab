@@ -30,13 +30,14 @@ Future<void> run(final String inputPath, final String outputPath,
       .then((List<SingleParsingInfo> results) {
     if (withJson) {
       results.forEach((singleParsingInfo) {
-        metadata.add(singleParsingInfo.metadata);
+        if (singleParsingInfo.metadata != null) {
+          metadata.add(singleParsingInfo.metadata);
+        }
         documentsForSearch.addAll(singleParsingInfo.documentsForSearch);
       });
       io.writeToDocument(
           outputPath + "/" + "md_search.json", jsonEncode(documentsForSearch));
-      io.writeToDocument(
-          outputPath + "/" + "md.json", jsonEncode(metadata));
+      io.writeToDocument(outputPath + "/" + "md.json", jsonEncode(metadata));
     }
   });
 }
@@ -56,7 +57,8 @@ Future<SingleParsingInfo> _executeSingle(
       outputPath + "/" + basename(inputFile).replaceAll(".md", "") + ".html";
 
   mdDocument = await io.read(inputFile);
-  codelab = parser.parse(mdDocument.htmlContent,basename(inputFile).replaceAll(".md", "") + ".html");
+  codelab = parser.parse(mdDocument.htmlContent,
+      basename(inputFile).replaceAll(".md", "") + ".html");
 
   metadata = codelab.metadata;
   if (quiver_strings.isNotEmpty(metadata)) {
