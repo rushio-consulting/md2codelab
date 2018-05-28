@@ -5,7 +5,20 @@ import 'package:angular/angular.dart';
 import 'package:angular_components/angular_components.dart';
 import 'package:md2codelab_ui/utils.dart' as js_interop;
 import 'package:quiver/strings.dart' as quiver_strings;
+import 'package:quiver/core.dart' as quiver_core;
 import 'app_service.dart';
+
+class SearchResult {
+  String path;
+  String title;
+  String codelab;
+
+  SearchResult(this.path, this.title, this.codelab);
+
+  bool operator ==(o) => o is SearchResult && path == o.path;
+
+  int get hashCode => quiver_core.hash2(path.hashCode, path.hashCode);
+}
 
 @Component(
   selector: 'my-app',
@@ -21,7 +34,7 @@ import 'app_service.dart';
   ],
 )
 class AppComponent implements OnInit {
-
+  static const String DEFAULT_LOCATION = "http://unknow/";
   static const String DEFAULT_APP_NAME = "APP_NAME";
   static const String DEFAULT_APP_WELCOME = "APP_WELCOME";
   static const String DEFAULT_APP_DESCRIPTION = "APP_DESCRIPTION";
@@ -29,6 +42,7 @@ class AppComponent implements OnInit {
   static const String DEFAULT_APP_START_BUTTON = "START";
 
   /// Config
+  String appLocation = DEFAULT_LOCATION;
   String appName = DEFAULT_APP_NAME;
   String appWelcome = DEFAULT_APP_WELCOME;
   String appDescription = DEFAULT_APP_DESCRIPTION;
@@ -42,10 +56,10 @@ class AppComponent implements OnInit {
   static List<String> categories = <String>[];
 
   StringSelectionOptions<String> selectionCategoriesOptions =
-  new StringSelectionOptions(categories);
+      new StringSelectionOptions(categories);
 
   final SelectionModel<String> selectionCategoryModel =
-  new SelectionModel.single();
+      new SelectionModel.single();
 
   final SelectionModel<int> widthSelection = new SelectionModel<int>.single();
 
@@ -55,6 +69,12 @@ class AppComponent implements OnInit {
 
   List<Codelab> filteredDatas = <Codelab>[];
   Iterable<Codelab> datas = <Codelab>[];
+  Iterable<CodelabSearch> datasSearch = <CodelabSearch>[];
+
+  var index;
+
+  ///
+  Set<SearchResult> searchResults = new Set();
 
   AppComponent(this.appService);
 
@@ -62,6 +82,7 @@ class AppComponent implements OnInit {
   Future<Null> ngOnInit() async {
     cfg = await appService.config();
     datas = await appService.codelabs();
+    datasSearch = await appService.codelabsSearch();
     _configureMessages();
     _configureCategories();
     _initDatas();
@@ -74,11 +95,12 @@ class AppComponent implements OnInit {
 
   void _configureMessages() {
     if (cfg != null &&
-        cfg.messages != null &&
-        cfg.messages.value != null &&
-        cfg.messages.value.isNotEmpty) {
+        cfg.global != null &&
+        cfg.global.value != null &&
+        cfg.global.value.isNotEmpty) {
       Map value;
-      value = cfg.messages.value;
+      value = cfg.global.value;
+      appLocation = _getValue(value["location"], DEFAULT_LOCATION);
       appName = _getValue(value["name"], DEFAULT_APP_NAME);
       appWelcome = _getValue(value["welcome"], DEFAULT_APP_WELCOME);
       appDescription = _getValue(value["description"], DEFAULT_APP_DESCRIPTION);
@@ -90,13 +112,15 @@ class AppComponent implements OnInit {
 
   void _configureCategories() {
     List values;
-    if ((cfg != null && cfg.categories != null && cfg.categories.value != null)) {
+    if ((cfg != null &&
+        cfg.categories != null &&
+        cfg.categories.value != null)) {
       values = cfg.categories.value.values.toList();
     } else {
       values = [];
     }
     // Ensure type checking to String
-    values.forEach((data){
+    values.forEach((data) {
       categories.add(data.toString());
     });
     selectionCategoriesOptions = new StringSelectionOptions(categories);
@@ -142,23 +166,16 @@ class AppComponent implements OnInit {
       Map value;
       value = cfg.categories.value;
 
-      res = (value != null && value[int.parse(key)] != null) ?
-      res = value[int.parse(key)].toString() : "";
+      res = (value != null && value[int.parse(key)] != null)
+          ? res = value[int.parse(key)].toString()
+          : "";
     }
     return res;
   }
 
-  showLunr() {
-    List<dynamic> list = js_interop.blablaTT("JavaScript");
-    list.forEach((value) {
-      print(value.ref.toString());
-    });
-  }
-
-  int get width =>
-      widthSelection.selectedValues.isNotEmpty
-          ? widthSelection.selectedValues.first
-          : null;
+  int get width => widthSelection.selectedValues.isNotEmpty
+      ? widthSelection.selectedValues.first
+      : null;
 
   String get singleSelectedCategory =>
       selectionCategoryModel.selectedValues.isNotEmpty
@@ -170,4 +187,32 @@ class AppComponent implements OnInit {
       selectionCategoryModel.selectedValues.length > 0
           ? selectionCategoryModel.selectedValues.first
           : selectionCategoryButton;
+
+  void onKey(dynamic event) {
+    if (quiver_strings.isEmpty(event.target.value.toString())) {
+      searchResults.clear();
+      return;
+    }
+
+    searchResults.clear();
+    var lunrJsResult = js_interop.search(event.target.value.toString());
+    lunrJsResult.forEach((entry) {
+      String path;
+      if (entry != null && entry.ref != null) {
+        path = entry.ref.toString();
+        searchResults.add(new SearchResult(
+            path, _entrySearch(path).title, _entrySearch(path).codelab));
+      }
+    });
+  }
+
+  CodelabSearch _entrySearch(String path) {
+    return datasSearch.firstWhere((entry) {
+      return entry.path == path;
+    });
+  }
+
+  startCodelab(path) => window.open("$appLocation/$path", "_blank");
+
+  bool hasDuration(String duration) => quiver_strings.isNotEmpty(duration) && duration != "null";
 }

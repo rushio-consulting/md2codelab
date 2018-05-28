@@ -1,139 +1,174 @@
 @import 'package:angular_components/css/material/material';
 
 material-dropdown-select {
-    width: 200px;
-    padding: 16px 0;
+  width: 200px;
+  padding: 16px 0;
 }
 
 header, footer, article, nav, aside {
-    padding: 1em;
+  padding: 1em;
 }
 
 header {
-    box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 6px 0px rgba(0, 0, 0, 0.3);
 }
 
 #search-button {
-    width: 500px;
-    margin-right:150px;
+  width: 500px;
+  margin-right: 150px;
 }
 
 .wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper-section {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 #wrapper-section-description {
-    margin-right: 32px;
-    line-height: 32px;
+  margin-right: 32px;
+  line-height: 32px;
 }
 
 .wrapper-section-control {
-    display: flex;
-    justify-content: space-between;
-    margin-right: 70px;
-    margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  margin-right: 70px;
+  margin-left: 20px;
 }
 
 .launch-button {
-    background: white;
-    color: #4285f4;
+  background: white;
+  color: #4285f4;
 }
 
 .cards {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
+
 .card {
-    flex: 0 0 330px;
-    max-height: 330px;
-    margin: 10px;
-    border: 1px solid #eeeeee;
+  flex: 0 0 330px;
+  max-height: 330px;
+  margin: 10px;
+  border: 1px solid #eeeeee;
 }
 
 .card img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 .card-header {
-    height: 60px;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+  height: 60px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .card .card-body {
-    padding: 0 20px 20px;
+  padding: 0 20px 20px;
 }
 
 .card-footer {
-    height: 100%;
-    border-top: 1px solid #DADCE0;
-    padding: 8px 16px;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  border-top: 1px solid #DADCE0;
+  padding: 8px 16px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .card-title {
-    align-content: center;
-    text-align: center;
-    height: 40px;
+  align-content: center;
+  text-align: center;
+  height: 40px;
 }
-.card-description  {
-    height: 100px;
+
+.card-description {
+  height: 100px;
 }
 
 .card-duration {
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    color: #FFFFFF;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #FFFFFF;
 }
 
 .category-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: white;
-    background-size: 70%;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  background-size: 70%;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
 }
 
-
 material-button {
-    background: $mat-blue;
-    color: $mat-white;
+  background: $mat-blue;
+  color: $mat-white;
 }
 
 #main {
-    display: flex;
-    flex: 1;
+  display: flex;
+  flex: 1;
 }
 
 #main > article {
-    flex: 1;
+  flex: 1;
 }
 
 #main > nav,
 #main > aside {
-    flex: 0 0 20vw;
+  flex: 0 0 20vw;
 }
 
 #main > nav {
-    order: -1;
+  order: -1;
 }
 
+
+.search-result-container {
+  margin-top:50px;
+  border-left: 1px solid #eeeeee;
+  padding: 1em;
+}
+
+.search-result-box {
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 10px;
+  margin-top: 20px;
+}
+
+.search-result-title {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: normal;
+  color: #1155cc;
+  line-height: 1.4em;
+}
+
+.search-result-url {
+  cursor: pointer;
+  color: #009933;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.search-result-description {
+  font-size: 14px;
+
+}

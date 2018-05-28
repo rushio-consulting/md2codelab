@@ -17,17 +17,18 @@ categories_icons: # Icons must be in icons/
     4: web.svg
 
 
-messages:
+global:
+  location: http://url/to/codelabs
   name: Codelabs
-  welcome: Welcome to Codelabs !
+  welcome: Sample Welcome Page !
   description: >
-    Google Developers Codelabs provide a guided, tutorial,
-    hands-on coding experience. Most codelabs will step you through
-    the process of building a small application, or adding a new feature to an existing application.
-     They cover a wide range of topics such as Android Wear,
-     Google Compute Engine, Project Tango, and Google APIs on iOS.
-  author: Diff Tech PRODIGE
-  start_button: Démarrer
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+     laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+     voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+  author: Team Author
+  start_button: Start
 
 
 

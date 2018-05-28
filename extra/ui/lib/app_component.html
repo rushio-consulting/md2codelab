@@ -1,4 +1,5 @@
-<a class="github-fork-ribbon" href="https://url.to-your.repo" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork me on GitHub</a>
+<a class="github-fork-ribbon" href="https://url.to-your.repo" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork
+    me on GitHub</a>
 
 <header class="material-header">
     <div class="material-header-row">
@@ -6,7 +7,7 @@
         <div class="material-spacer"></div>
         <nav class="material-navigation">
             <material-input id="search-button" label="search"
-                            leadingGlyph="search">
+                            leadingGlyph="search" (keyup)="onKey($event)">
             </material-input>
         </nav>
     </div>
@@ -45,10 +46,11 @@
                 <div class="cards">
                     <div class="card" *ngFor="let data of filteredDatas; let i=index">
                         <div class="card-header" [style.background]="getCategoryBg(data.category)">
-                            <div id="icon" class="category-icon"  [style.background-image]="getCategoryIcon(data.category)"></div>
-                            <div *ngIf="data.duration.isNotEmpty"  class="card-duration">
+                            <div id="icon" class="category-icon"
+                                 [style.background-image]="getCategoryIcon(data.category)"></div>
+                            <div *ngIf="hasDuration(data.duration)" class="card-duration">
                                 <img src="https://codelabs.developers.google.com/images/schedule.svg">
-                                <span> {{data.duration}} </span>
+                                <span> {{ data.duration }} </span>
                             </div>
                         </div>
                         <div class="card-body">
@@ -59,9 +61,9 @@
                                 <p>{{ data.description }}</p>
                             </div>
                             <div class="card-footer">
-                            <material-button raised class="launch-button">
-                                {{ appStartButton }}
-                            </material-button>
+                                <material-button (click)="startCodelab(data.path)" raised class="launch-button">
+                                    {{ appStartButton }}
+                                </material-button>
                             </div>
 
                         </div>
@@ -73,6 +75,19 @@
     </article>
 
     <nav></nav>
-    <aside></aside>
+    <aside>
+        <div *ngIf="searchResults.length != 0" class="search-result-container">
+            <div>
+                <material-icon icon="search"></material-icon>
+                About {{ searchResults.length}} results
+            </div>
+            <div class="search-result-box" *ngFor="let searchResult of searchResults; let i=index">
+                <div class="search-result-title "><a>{{ searchResult.title }}</a></div>
+                <div class="search-result-url"><a>{{ searchResult.path }}</a></div>
+                <div class="search-result-description"> {{ searchResult.codelab }}</div>
+            </div>
+        </div>
+    </aside>
+
 </div>
 <footer></footer>

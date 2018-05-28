@@ -6,13 +6,27 @@ import 'package:yaml/yaml.dart';
 import 'package:angular/core.dart';
 
 class AppConfig {
-  YamlMap messages;
+  YamlMap global;
   YamlMap categories;
   YamlMap categoriesColors;
   YamlMap categoriesIcons;
 
-  AppConfig(
-      this.messages, this.categories, this.categoriesColors, this.categoriesIcons);
+  AppConfig(this.global, this.categories, this.categoriesColors,
+      this.categoriesIcons);
+}
+
+class CodelabSearch {
+  String codelab;
+  String order;
+  String title;
+  String path;
+
+  CodelabSearch.fromJson(dynamic json) {
+    this.codelab = json['codelab'].toString();
+    this.order = json['order'].toString();
+    this.title = json['title'].toString();
+    this.path = json['path'].toString();
+  }
 }
 
 class Codelab {
@@ -22,7 +36,7 @@ class Codelab {
   String duration;
   String path;
 
-  Codelab.fromJson(Map json) {
+  Codelab.fromJson(dynamic json) {
     this.name = json['name'].toString();
     this.description = json['description'].toString();
     this.category = json['category'].toString();
@@ -44,16 +58,28 @@ class AppService {
     res = [];
     asJson = await HttpRequest.getString('md.json');
 
-    List<Map> mapList = json.decode(asJson);
+    var mapList = json.decode(asJson);
     mapList.forEach((json) {
       res.add(new Codelab.fromJson(json));
     });
     return res.take(res.length);
   }
 
-  Future<AppConfig> config() async {
+  Future<Iterable<CodelabSearch>> codelabsSearch() async {
+    String asJson;
+    List<CodelabSearch> res;
+    res = [];
+    asJson = await HttpRequest.getString('md_search.json');
 
-    YamlMap messages;
+    var mapList = json.decode(asJson);
+    mapList.forEach((json) {
+      res.add(new CodelabSearch.fromJson(json));
+    });
+    return res.take(res.length);
+  }
+
+  Future<AppConfig> config() async {
+    YamlMap global;
     YamlMap categories;
     YamlMap categoriesColors;
     YamlMap categoriesIcons;
@@ -62,8 +88,8 @@ class AppService {
     if (map != null) {
       map.nodes.forEach((key, value) {
         switch (key.toString()) {
-          case 'messages':
-            messages = value as YamlMap;
+          case 'global':
+            global = value as YamlMap;
             break;
           case 'categories':
             categories = value as YamlMap;
@@ -78,7 +104,8 @@ class AppService {
             break;
         }
       });
-      return new AppConfig(messages, categories, categoriesColors, categoriesIcons);
+      return new AppConfig(
+          global, categories, categoriesColors, categoriesIcons);
     }
     return null;
   }

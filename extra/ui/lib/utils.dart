@@ -3,5 +3,5 @@ library jsinterop;
 
 import "package:js/js.dart";
 
-@JS("caller")
-external dynamic blablaTT(value);
+@JS("search")
+external dynamic search(value);
