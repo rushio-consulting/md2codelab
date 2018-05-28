@@ -74,8 +74,8 @@ class Step {
   }
   """;
 
-  StepSearch getStepSearch(String codelab) {
-    return new StepSearch(codelab, order, label, jsonEncode("${content.innerHtml}"));
+  StepSearch getStepSearch(String codelab, String outputFileName) {
+    return new StepSearch(codelab, order, label, outputFileName, jsonEncode("${content.innerHtml}"));
   }
 }
 
@@ -84,15 +84,16 @@ class StepSearch {
   String order;
   String title;
   String content;
+  String outputFileName;
   String path = "";
 
-  StepSearch(this.codelab, this.order, this.title, this.content);
+  StepSearch(this.codelab, this.order, this.title, this.outputFileName, this.content);
 
   Map toJson() => {
         'codelab': this.codelab,
         'order': this.order,
         'title': this.title,
         'content': this.content,
-        'path': "md/output.html#$order",
+        'path': "md/$outputFileName#${int.parse(order) - 1}",
       };
 }

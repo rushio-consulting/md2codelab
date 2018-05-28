@@ -93,7 +93,7 @@ String _getAlertDanger(String innerHtml) => """
 """;
 
 /// Parse the given [htmlContent] to a codelab
-Codelab parse(String htmlContent) {
+Codelab parse(String htmlContent, String outputFileName) {
   Document document;
   Element body;
   int stepSize;
@@ -104,7 +104,7 @@ Codelab parse(String htmlContent) {
   String title;
   String metadata;
 
-  metadata= "";
+  metadata = "";
   document = html5parser.parse(htmlContent);
   body = document.body;
   title = body.querySelector("h1").innerHtml;
@@ -121,7 +121,7 @@ Codelab parse(String htmlContent) {
         if (node.localName == "h2") {
           index++;
           if (currentStep != null) {
-            stepSearch.add(currentStep.getStepSearch(title));
+            stepSearch.add(currentStep.getStepSearch(title,outputFileName));
           }
           currentStep = new Step(node.innerHtml);
           currentStep.order = index.toString();
@@ -129,7 +129,6 @@ Codelab parse(String htmlContent) {
             currentStep.isLast = true;
           }
           steps.add(currentStep);
-
         } else if (currentStep != null) {
           if (_isDuration(node)) {
             currentStep.duration = _getDuration(node.innerHtml);
@@ -159,7 +158,7 @@ Codelab parse(String htmlContent) {
 
   // Last one for search
   if (currentStep != null && currentStep.isLast) {
-    stepSearch.add(currentStep.getStepSearch(title));
+    stepSearch.add(currentStep.getStepSearch(title, outputFileName));
   }
 
   return new Codelab(metadata, title, steps, stepSearch);

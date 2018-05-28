@@ -56,7 +56,7 @@ Future<SingleParsingInfo> _executeSingle(
       outputPath + "/" + basename(inputFile).replaceAll(".md", "") + ".html";
 
   mdDocument = await io.read(inputFile);
-  codelab = parser.parse(mdDocument.htmlContent);
+  codelab = parser.parse(mdDocument.htmlContent,basename(inputFile).replaceAll(".md", "") + ".html");
 
   metadata = codelab.metadata;
   if (quiver_strings.isNotEmpty(metadata)) {
