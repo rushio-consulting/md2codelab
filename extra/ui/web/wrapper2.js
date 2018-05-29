@@ -36,7 +36,7 @@ loadJSON(function (response) {
 
 });
 
-
-var search = function (value) {
-    return idx.search(value);
+function search(value){
+    return dx.search(value);
 }
+
