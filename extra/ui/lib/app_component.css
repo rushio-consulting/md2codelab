@@ -1,4 +1,3 @@
-@import 'package:angular_components/css/material/material';
 
 material-dropdown-select {
   width: 200px;
@@ -115,10 +114,10 @@ header {
   background-repeat: no-repeat;
 }
 
-material-button {
-  background: $mat-blue;
-  color: $mat-white;
-}
+/*material-button {*/
+  /*background: $mat-blue;*/
+  /*color: $mat-white;*/
+/*}*/
 
 #main {
   display: flex;

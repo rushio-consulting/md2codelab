@@ -24,7 +24,7 @@ class SearchResult {
   selector: 'my-app',
   styleUrls: const [
     'package:angular_components/app_layout/layout.scss.css',
-    'app_component.scss.css'
+    'app_component.css'
   ],
   templateUrl: 'app_component.html',
   directives: [materialDirectives, NgFor, NgIf, NgStyle],

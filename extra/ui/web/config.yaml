@@ -18,17 +18,14 @@ categories_icons: # Icons must be in icons/
 
 
 global:
-  location: http://url/to/codelabs
+  location: http://meteo.mipih.net/codelabs/
   name: Codelabs
-  welcome: Sample Welcome Page !
+  welcome: Codelabs @ Diff Tech Prodige !
   description: >
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-    ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-     laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-     voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-  author: Team Author
-  start_button: Start
+    "Cette IHM fournit une prise en main sous forme de codelabs tutorial. Ci-dessous la liste des codelabs
+    disponibles."
+  author: Team Diff Technique
+  start_button: Démarrer
 
 
 

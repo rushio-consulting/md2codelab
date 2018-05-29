@@ -37,6 +37,6 @@ loadJSON(function (response) {
 });
 
 function search(value){
-    return dx.search(value);
+    return idx.search(value);
 }
 
