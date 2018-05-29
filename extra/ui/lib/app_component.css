@@ -50,7 +50,7 @@ header {
 }
 
 .card {
-  flex: 0 0 330px;
+  flex: 0 0 310px;
   max-height: 330px;
   margin: 10px;
   border: 1px solid #eeeeee;
@@ -128,9 +128,12 @@ header {
   flex: 1;
 }
 
-#main > nav,
+#main > nav {
+  flex: 0 0 10vw;
+}
+
 #main > aside {
-  flex: 0 0 20vw;
+  flex: 0 0 30vw;
 }
 
 #main > nav {
