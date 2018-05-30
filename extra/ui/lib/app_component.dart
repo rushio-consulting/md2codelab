@@ -40,6 +40,8 @@ class AppComponent implements OnInit {
   static const String DEFAULT_APP_DESCRIPTION = "APP_DESCRIPTION";
   static const String DEFAULT_APP_AUTHOR = "APP_AUTHOR";
   static const String DEFAULT_APP_START_BUTTON = "START";
+  static const String DEFAULT_APP_SELECT_CATEGORY = "Select a category";
+  static const String DEFAULT_APP_DESELECT_ALL = "All";
 
   /// Config
   String appLocation = DEFAULT_LOCATION;
@@ -47,11 +49,11 @@ class AppComponent implements OnInit {
   String appWelcome = DEFAULT_APP_WELCOME;
   String appDescription = DEFAULT_APP_DESCRIPTION;
   String appAuthor = DEFAULT_APP_AUTHOR;
-  String appStartButton = DEFAULT_APP_START_BUTTON;
+  String appStartButtonLabel = DEFAULT_APP_START_BUTTON;
+  String appSelectCategoryLabel = DEFAULT_APP_SELECT_CATEGORY;
+  String appDeselectAllLabel = DEFAULT_APP_DESELECT_ALL;
 
   /// DROP DOWN CATEGORY SELECTION
-  final String deselectLabel = 'All';
-  final String selectionCategoryButton = "Select a category";
   final bool deselectOnActivate = true;
   static List<String> categories = <String>[];
 
@@ -67,14 +69,18 @@ class AppComponent implements OnInit {
   final AppService appService;
   AppConfig cfg;
 
-  List<Codelab> filteredDatas = <Codelab>[];
+  Iterable<Codelab> filteredDatas = <Codelab>[];
   Iterable<Codelab> datas = <Codelab>[];
   Iterable<CodelabSearch> datasSearch = <CodelabSearch>[];
 
   var index;
 
+  String filterValue;
+
   ///
   Set<SearchResult> searchResults = new Set();
+
+  String selectionCategoryModelKey;
 
   AppComponent(this.appService);
 
@@ -89,9 +95,9 @@ class AppComponent implements OnInit {
   }
 
   String _getValue(dynamic value, String ifEmpty) =>
-      value != null && quiver_strings.isEmpty(value.toString())
+      value == null || quiver_strings.isEmpty(value.toString())
           ? ifEmpty
-          : value.toString();
+          : value.toString() ;
 
   void _configureMessages() {
     if (cfg != null &&
@@ -105,8 +111,12 @@ class AppComponent implements OnInit {
       appWelcome = _getValue(value["welcome"], DEFAULT_APP_WELCOME);
       appDescription = _getValue(value["description"], DEFAULT_APP_DESCRIPTION);
       appAuthor = _getValue(value["author"], DEFAULT_APP_AUTHOR);
-      appStartButton =
-          _getValue(value["start_button"], DEFAULT_APP_START_BUTTON);
+      appStartButtonLabel =
+          _getValue(value["start_button_label"], DEFAULT_APP_START_BUTTON);
+      appSelectCategoryLabel =
+          _getValue(value["select_category_label"], DEFAULT_APP_SELECT_CATEGORY);
+      appDeselectAllLabel =
+          _getValue(value["deselect_category_label"], DEFAULT_APP_DESELECT_ALL);
     }
   }
 
@@ -139,14 +149,13 @@ class AppComponent implements OnInit {
       return;
     }
 
-    String key;
-    key = appService.categoryKeyByValue(
+    selectionCategoryModelKey = appService.categoryKeyByValue(
         cfg, selectionCategoryModel.selectedValues.first);
-    if (quiver_strings.isEmpty(key)) {
+    if (quiver_strings.isEmpty(selectionCategoryModelKey)) {
       filteredDatas = datas.toList();
     } else {
       filteredDatas = datas.where((codelab) {
-        return codelab.category == key;
+        return codelab.category == selectionCategoryModelKey;
       }).toList();
     }
   }
@@ -186,9 +195,9 @@ class AppComponent implements OnInit {
   String get selectionCategoryLabel =>
       selectionCategoryModel.selectedValues.length > 0
           ? selectionCategoryModel.selectedValues.first
-          : selectionCategoryButton;
+          : appSelectCategoryLabel;
 
-  void onKey(dynamic event) {
+  void onSearch(dynamic event) {
     if (quiver_strings.isEmpty(event.target.value.toString())) {
       searchResults.clear();
       return;
@@ -206,6 +215,18 @@ class AppComponent implements OnInit {
     });
   }
 
+  void onFilter(dynamic event) => filterValue = event.target.value.toString();
+
+  getDatas() {
+    if (quiver_strings.isEmpty(filterValue)) {
+      return filteredDatas;
+    }
+
+    return  filteredDatas.where((codelab) {
+      return codelab.name.toLowerCase().contains(filterValue.toLowerCase());
+    });
+  }
+
   CodelabSearch _entrySearch(String path) {
     return datasSearch.firstWhere((entry) {
       return entry.path == path;
@@ -214,5 +235,6 @@ class AppComponent implements OnInit {
 
   startCodelab(path) => window.open("$appLocation/$path", "_blank");
 
-  bool hasDuration(String duration) => quiver_strings.isNotEmpty(duration) && duration != "null";
+  bool hasDuration(String duration) =>
+      quiver_strings.isNotEmpty(duration) && duration != "null";
 }

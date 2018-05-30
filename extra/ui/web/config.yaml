@@ -25,7 +25,8 @@ global:
     "Cette IHM fournit une prise en main sous forme de codelabs tutorial. Ci-dessous la liste des codelabs
     disponibles."
   author: Team Diff Technique
-  start_button: Démarrer
+  start_button_label: Démarrer
+
 
 
 
