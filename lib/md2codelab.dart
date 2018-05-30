@@ -5,8 +5,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:path/path.dart';
-import 'package:yaml/yaml.dart';
 import 'package:quiver/strings.dart' as quiver_strings;
+import 'package:yaml/yaml.dart';
 
 import 'src/io.dart' as io;
 import 'src/models.dart';
@@ -26,7 +26,7 @@ Future<void> run(final String inputPath, final String outputPath,
 
   Future
       .wait(
-          inputFiles.map((file) => _executeSingle(file.toString(), outputPath)))
+          inputFiles.map((file) => executeSingle(file.toString(), outputPath)))
       .then((List<SingleParsingInfo> results) {
     if (withJson) {
       results.forEach((singleParsingInfo) {
@@ -42,7 +42,7 @@ Future<void> run(final String inputPath, final String outputPath,
   });
 }
 
-Future<SingleParsingInfo> _executeSingle(
+Future<SingleParsingInfo> executeSingle(
     String inputFile, String outputPath) async {
   MdDocument mdDocument;
   Codelab codelab;
