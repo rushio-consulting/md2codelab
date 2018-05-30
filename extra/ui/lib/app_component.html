@@ -1,4 +1,5 @@
-<a class="github-fork-ribbon" href="https://github.com/bwnyasse/md2codelab" data-ribbon="Fork me on GitHub" title="Fork me on GitHub">Fork
+<a class="github-fork-ribbon" href="https://github.com/bwnyasse/md2codelab" data-ribbon="Fork me on GitHub"
+   title="Fork me on GitHub">Fork
     me on GitHub</a>
 
 <header class="material-header">
@@ -7,7 +8,7 @@
         <div class="material-spacer"></div>
         <nav class="material-navigation">
             <material-input id="search-button" label="search"
-                            leadingGlyph="search" (keyup)="onKey($event)">
+                            leadingGlyph="search" (keyup)="onSearch($event)">
             </material-input>
         </nav>
     </div>
@@ -28,6 +29,9 @@
             <div class="wrapper-section">
                 <div class="wrapper-section-control">
                     <div>
+                        <material-input id="filter-button" label="filter"
+                                        leadingGlyph="find_in_page" (keyup)="onFilter($event)">
+                        </material-input>
                     </div>
                     <div>
                         <material-dropdown-select
@@ -36,7 +40,7 @@
                                 [options]="selectionCategoriesOptions"
                                 [width]="width"
                                 [deselectOnActivate]="deselectOnActivate"
-                                [deselectLabel]="deselectLabel">
+                                [deselectLabel]="appDeselectAllLabel">
                         </material-dropdown-select>
                     </div>
                 </div>
@@ -44,7 +48,7 @@
 
             <div class="wrapper-section">
                 <div class="cards">
-                    <div class="card" *ngFor="let data of filteredDatas; let i=index">
+                    <div class="card" *ngFor="let data of getDatas(); let i=index">
                         <div class="card-header" [style.background]="getCategoryBg(data.category)">
                             <div id="icon" class="category-icon"
                                  [style.background-image]="getCategoryIcon(data.category)"></div>
@@ -62,7 +66,7 @@
                             </div>
                             <div class="card-footer">
                                 <material-button (click)="startCodelab(data.path)" raised class="launch-button">
-                                    {{ appStartButton }}
+                                    {{ appStartButtonLabel }}
                                 </material-button>
                             </div>
 
@@ -83,7 +87,8 @@
             </div>
             <div class="search-result-box" *ngFor="let searchResult of searchResults; let i=index">
                 <div class="search-result-title "><a>{{ searchResult.title }}</a></div>
-                <div class="search-result-url"><a href="{{ appLocation }}/{{ searchResult.path }}" target="">{{ appLocation }}/{{ searchResult.path }}</a></div>
+                <div class="search-result-url"><a href="{{ appLocation }}/{{ searchResult.path }}" target="">{{
+                    appLocation }}/{{ searchResult.path }}</a></div>
                 <div class="search-result-description"> {{ searchResult.codelab }}</div>
             </div>
         </div>
