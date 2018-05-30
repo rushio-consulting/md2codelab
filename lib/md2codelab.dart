@@ -5,8 +5,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:path/path.dart';
-import 'package:yaml/yaml.dart';
 import 'package:quiver/strings.dart' as quiver_strings;
+import 'package:yaml/yaml.dart';
 
 import 'src/io.dart' as io;
 import 'src/models.dart';
