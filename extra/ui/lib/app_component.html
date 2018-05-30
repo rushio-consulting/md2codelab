@@ -87,7 +87,7 @@
             </div>
             <div class="search-result-box" *ngFor="let searchResult of searchResults; let i=index">
                 <div class="search-result-title "><a>{{ searchResult.title }}</a></div>
-                <div class="search-result-url"><a href="{{ appLocation }}/{{ searchResult.path }}" target="">{{
+                <div class="search-result-url"><a href="{{ appLocation }}/{{ searchResult.path }}" target="_blank">{{
                     appLocation }}/{{ searchResult.path }}</a></div>
                 <div class="search-result-description"> {{ searchResult.codelab }}</div>
             </div>
