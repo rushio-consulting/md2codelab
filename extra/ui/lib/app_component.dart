@@ -2,7 +2,9 @@ import 'dart:async';
 import 'dart:html';
 import 'package:angular_components/model/selection/string_selection_options.dart';
 import 'package:angular/angular.dart';
+import 'package:angular/security.dart';
 import 'package:angular_components/angular_components.dart';
+import 'package:angular/core.dart' show Pipe, PipeTransform;
 import 'package:md2codelab_ui/utils.dart' as js_interop;
 import 'package:quiver/strings.dart' as quiver_strings;
 import 'package:quiver/core.dart' as quiver_core;
@@ -28,6 +30,7 @@ class SearchResult {
   ],
   templateUrl: 'app_component.html',
   directives: [materialDirectives, NgFor, NgIf, NgStyle],
+  pipes: [SafeCss],
   providers: [
     materialProviders,
     const ClassProvider(AppService),
@@ -237,4 +240,31 @@ class AppComponent implements OnInit {
 
   bool hasDuration(String duration) =>
       quiver_strings.isNotEmpty(duration) && duration != "null";
+
+  highlight(String name) {
+    if (quiver_strings.isEmpty(filterValue)) {
+      return name;
+    }
+    int start = name.toLowerCase().indexOf(filterValue.toLowerCase());
+    int end = start + filterValue.length;
+
+    String toHighlight = name.substring(start,end);
+    String replaceBy = '''<span class='highlight'>$toHighlight</span>''';
+
+    return name.replaceAll(toHighlight, replaceBy);
+  }
+}
+
+
+
+@Pipe('safeCSS')
+class SafeCss implements PipeTransform {
+  DomSanitizationService domSecurityService;
+  SafeCss(DomSanitizationService domSecurityService){
+    this.domSecurityService = domSecurityService;
+  }
+
+  transform(String value) {
+    return domSecurityService.bypassSecurityTrustHtml(value);
+  }
 }

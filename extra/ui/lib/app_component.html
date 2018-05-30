@@ -59,7 +59,7 @@
                         </div>
                         <div class="card-body">
                             <div class="card-title">
-                                <h4>{{ data.name }}</h4>
+                                <h4 [innerHTML]="highlight(data.name) | safeCSS "></h4>
                             </div>
                             <div class="card-description">
                                 <p>{{ data.description }}</p>
