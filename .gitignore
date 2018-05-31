@@ -13,3 +13,7 @@ doc/api/
 #Intellij
 .idea
 *.iml
+
+# watcher directory
+web/*.md
+web/*.html
