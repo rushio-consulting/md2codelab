@@ -11,12 +11,15 @@ Future<MdDocument> read(String inputFile) async {
   String asHtml;
 
   String mdContent = await _readFileContent(inputFile);
-  asHtml = markdownToHtml(mdContent,
-      inlineSyntaxes: [new InlineHtmlSyntax()],
-      blockSyntaxes: [const TableSyntax(), const FencedCodeBlockSyntax()]);
+  asHtml = readMarkdownToHtml(mdContent);
 
   return new MdDocument(asHtml);
 }
+
+String readMarkdownToHtml(String mdContent) => markdownToHtml(mdContent,
+    inlineSyntaxes: [new InlineHtmlSyntax()],
+    blockSyntaxes: [const TableSyntax(), const FencedCodeBlockSyntax()]);
+
 
 Future _readFileContent(String filename) =>
     new File(filename).readAsString(encoding: utf8);

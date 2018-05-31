@@ -1,6 +1,8 @@
 import 'models.dart';
 
-String _renderDocument(String title, String webComponent) => '''
+String _renderDocument(
+        String title, String webComponent, String dependenciesPath) =>
+    '''
   <!doctype html>
   <html>
   <head>
@@ -8,8 +10,8 @@ String _renderDocument(String title, String webComponent) => '''
       <meta name="theme-color" content="#4F7DC9">
       <meta charset="UTF-8">
       <title>$title</title>
-      <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-      <link rel="import" href="elements/codelab.html">
+      <script src="${dependenciesPath}bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+      <link rel="import" href="${dependenciesPath}elements/codelab.html">
       <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css">
@@ -54,7 +56,7 @@ String _renderDocument(String title, String webComponent) => '''
   </html>
 ''';
 
-String render(Codelab codelab) {
+String render(Codelab codelab, [String dependenciesPath = ""]) {
   var buffer = new StringBuffer();
 
   if (codelab.feedbackLink != null && codelab.feedbackLink.isNotEmpty) {
@@ -74,5 +76,5 @@ String render(Codelab codelab) {
 
   buffer.write("</google-codelab>");
 
-  return _renderDocument(codelab.title, buffer.toString());
+  return _renderDocument(codelab.title, buffer.toString(), dependenciesPath);
 }
