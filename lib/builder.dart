@@ -20,12 +20,14 @@ class MdBuilder implements Builder {
     var copy = inputId.addExtension('.html');
 
     // Write out the new asset.
-    await buildStep.writeAsString(copy, toto(mdContent));
+    await buildStep.writeAsString(copy, _execute(mdContent));
   }
 
-  Future<String> toto(String mdContent) async {
+  Future<String> _execute(String mdContent) async {
     Codelab codelab;
-    String htmlContent = readMarkdownToHtml(mdContent);
+    String htmlContent;
+
+    htmlContent = readMarkdownToHtml(mdContent);
     codelab = parse(htmlContent, "");
     return codelab != null ? render(codelab, "../.dependencies/") : "ERROR while parsing";
   }

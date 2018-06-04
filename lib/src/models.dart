@@ -40,6 +40,7 @@ class Codelab {
     "metadata": "$metadata",
     "title": "$title",
     "steps": $steps,
+    "stepSearch": $stepSearch,
     "feedbackLink": $feedbackLink
   }
   """;
@@ -68,7 +69,9 @@ class Step {
   @override
   String toString() => """
   {
+    "order": "$order",
     "label": "$label",
+    "duration": "$duration",
     "content": "${content.innerHtml}",
     "isLast": "$isLast",
   }
@@ -96,4 +99,16 @@ class StepSearch {
         'content': this.content,
         'path': "md/$outputFileName#${int.parse(order) - 1}",
       };
+
+  @override
+  String toString() => """
+  {
+    "codelab": "$codelab",
+    "order": "$order",
+    "title": "$title",
+    "content": "$content",
+    "outputFileName": "$outputFileName",
+    "path": "$path",
+  }
+  """;
 }
