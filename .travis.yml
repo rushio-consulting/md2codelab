@@ -1,0 +1,59 @@
+sudo: required
+
+language: dart
+
+dart:
+  # Install the dev release
+  - dev
+
+env:
+  global:
+     - CURRENT=$(pwd)
+     - GITHUB_REPOSITORY=github.com/bwnyasse/led.git
+     - DOCKER_REPOSITORY=bwnyasse/led
+     - DOCKER_COMPOSE_VERSION=1.8.0
+
+     # LED build version - also used to tag github repo and docker hub image
+     - VERSION=0.8.0-SNAPSHOT
+
+services:
+  - docker
+
+before_install:
+  # Check current docker engine version
+  - docker --version
+
+  # set env vars in the build settings to interact with repositories
+  # see https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings
+#  - echo "Testing Docker Hub credentials"
+#  - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
+
+before_install:
+  - ./jobs/build.sh
+
+#install:
+#  - cd $CURRENT/images/led
+#  - docker pull ${DOCKER_REPOSITORY}:latest || true
+#  - docker build -t ${DOCKER_REPOSITORY} --pull=true --build-arg version=${VERSION} .
+#  - docker build -t ${DOCKER_REPOSITORY}:${VERSION} --build-arg version=${VERSION} .
+#
+#script:
+#  - cd $CURRENT/integ/dev
+#  - docker-compose -f led.yml up --build --force-recreate --remove-orphans -d
+#  - docker-compose -f service.yml up --build --force-recreate -d
+#  - count=$(docker ps -aq -f status="running" -s | wc -l)
+#  - if [[  $count != 3 ]]; then echo "Expected 3 running containers" && exit 1 ; fi
+#  - cd $CURRENT
+#
+#before_deploy:
+#   # CREATE GIT TAG
+#  - ./bin/github.sh
+#
+#deploy:
+#
+#    # Deploy to docker hub
+#    provider: script
+#    script: ./bin/dockerhub.sh
+#    skip_cleanup: true
+#    on:
+#      all_branches: true

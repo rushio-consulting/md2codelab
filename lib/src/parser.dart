@@ -107,7 +107,12 @@ Codelab parse(String htmlContent, String outputFileName) {
   metadata = "";
   document = html5parser.parse(htmlContent);
   body = document.body;
-  title = body.querySelector("h1").innerHtml;
+  Element h1Element = body.querySelector("h1");
+  if(h1Element == null){
+    throw new Exception("no H1 head find in the File. You must provide one !");
+  }
+
+  title = h1Element.innerHtml;
   stepSize = body.querySelectorAll("h2").length;
   index = 0;
   steps = [];

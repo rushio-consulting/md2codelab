@@ -17,3 +17,6 @@ doc/api/
 # watcher directory
 web/*.md
 web/*.html
+
+# docker
+.docker/docker-build.sh
