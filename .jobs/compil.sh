@@ -1,4 +1,10 @@
-#!/usr/bin/env bash
+#!/bin/bash
+#============================================================================================================#
+#title           :  compil.sh
+#description     :  App Compilation
+#author		     :  bwnyasse
+#===========================================================================================================#
+set -e
 
 readonly BASEDIR=$( cd $( dirname $0 ) && pwd )
 readonly SRC="$BASEDIR/.."
