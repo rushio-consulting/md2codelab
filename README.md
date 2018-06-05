@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/bwnyasse/md2codelab.svg?branch=master)](https://travis-ci.org/bwnyasse/md2codelab)
+
 # md2codelab
 Inspired by [googlecodelabs](https://github.com/googlecodelabs/), this repository provides another simple tool to convert a markdown file to a complete codelab
 
@@ -27,9 +29,7 @@ by this [google page](https://codelabs.developers.google.com/)
 
 * Google Codelabs - HTML and Markdown
 
-## How do I use it ? 
-
-[How to ?](https://github.com/bwnyasse/md2codelab/blob/master/HOWTO.md)
+## [How do I use it ?](https://github.com/bwnyasse/md2codelab/blob/master/HOWTO.md) 
 
 
  
