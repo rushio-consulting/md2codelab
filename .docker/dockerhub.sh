@@ -13,3 +13,5 @@ then
   docker tag ${DOCKER_REPOSITORY}:latest
   docker push ${DOCKER_REPOSITORY}:latest
 fi
+
+exit 0
