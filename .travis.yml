@@ -24,7 +24,7 @@ before_install:
   - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 
 before_install:
-  - ./.jobs/compil.sh
+  - bash $CURRENT/.jobs/compil.sh
 
 install:
   - cd $CURRENT/.docker
@@ -40,7 +40,7 @@ deploy:
 
     # Deploy to docker hub
     provider: script
-    script: ./.docker/dockerhub.sh
+    script: bash $CURRENT/.docker/dockerhub.sh
     skip_cleanup: true
     on:
       all_branches: true
