@@ -3,6 +3,9 @@
 # md2codelab
 Inspired by [googlecodelabs](https://github.com/googlecodelabs/), this repository provides another simple tool to convert a markdown file to a complete codelab
 
+
+![firstcodelab](firstcodelab.png)
+
 The generated codelabs are interactive instructional tutorials, which can be authored in markdown format
 using some extra add-ons. This repo contains all the tools and documentation you'll need
 for building your own codelabs.
