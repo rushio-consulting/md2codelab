@@ -4,8 +4,9 @@ language: dart
 
 dart:
   # Install the dev release
-  - dev
-
+  #- dev
+  # Install a specific dev release, using a partial download URL - 1.16.0-dev.3.0
+  - "dev/release/2.0.0-dev.58.0"
 env:
   global:
      - CURRENT=$(pwd)
