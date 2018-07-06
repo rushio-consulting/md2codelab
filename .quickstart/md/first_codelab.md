@@ -1,5 +1,5 @@
 <metadata>
-name: md2codelab : First codelab
+name: md2codelab - First codelab
 description: Describe first markdown codelab
 category: 1
 duration:
