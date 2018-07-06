@@ -41,15 +41,21 @@ by this [google page](https://codelabs.developers.google.com/)
 
  The best way to start is to clone this repository. 
  
- ** To avoid a long way to setup your environment, You will need to install docker to continue ! **
+ **To avoid a long way to setup your environment, You will need to install docker to continue !**
  
 Following are the list of command for your quick start : 
 
 
     git clone https://github.com/bwnyasse/md2codelab.git
-    cd md2codelab/.quickstart
+    cd md2codelab/.quickstart/
     
+    # You must complete file `md/config.yaml` to update the app url location and messages    
+    # Launch the compilation => output dir is build/
     /bin/bash build.sh --launch
 
-
+    #if the build is done!
+    cd build/
+    
+    # You can launch any http server  
+    python -m SimpleHTTPServer    
  

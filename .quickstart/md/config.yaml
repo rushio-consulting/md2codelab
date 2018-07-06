@@ -20,7 +20,7 @@ categories_icons: # Icons must be in icons/
 
 
 global:
-  #location: http://URL_LOCATION
+  location: http://YOUR_URL_LOCATION:PORT
   name: Codelabs
   welcome: Welcome Message
   description: >
