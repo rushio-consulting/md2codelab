@@ -82,7 +82,7 @@ _build_md() {
 	[[ -f md.json ]] && mv md.json $BUILDDIR/
 	[[ -f md_search.json ]] && mv md_search.json $BUILDDIR/
 
-	mv * $BUILDDIR/md/
+	cp -R * $BUILDDIR/md/
 
 	return 0
 }
