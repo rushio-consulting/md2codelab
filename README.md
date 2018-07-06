@@ -59,3 +59,7 @@ Following are the list of command for your quick start :
     # You can launch any http server  
     python -m SimpleHTTPServer    
  
+ 
+When navigating to the url provide by simpleHTTPServer, you will find a page like the following : 
+
+![indexcodelab](indexcodelab.png)
