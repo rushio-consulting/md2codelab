@@ -49,7 +49,11 @@ _print_info() {
 _build_ui() {
     _print_title "Build Diff Tech Codelabs UI Angular"
 
- 	git clone $MD_2_CODELAB_PARSER $GITREPO || _print_error_and_exit "Impossible de clone le repo $$MD_2_CODELAB_PARSER"
+    if [[ -f $GITREPO ]];then
+        cd $GITREPO && git pull
+    else
+ 	    git clone $MD_2_CODELAB_PARSER $GITREPO || _print_error_and_exit "Impossible de clone le repo $MD_2_CODELAB_PARSER"
+    fi
 
  	cd $GITREPO/extra/ui || _print_error_and_exit "Impossible de se positionner dans le répertoire UI"
 
@@ -84,11 +88,14 @@ _build_md() {
 }
 
 _synchronize() {
-	print_title "Synchronise to build/"
+	_print_title "Synchronise to build/"
 
-    mkidr -p /app/build
+    mkdir -p /app/build
 
-    cp -R $BUILDDIR/ /app/build || print_error_and_exit "Error while synchronising"
+    cp -R $BUILDDIR/ /app/build || print_error_and_exit "Error while synchronising $BUILDDIR"
+
+    #TODO : must provide better way to fetch dependencies
+    cp -R /app/gr/.dependencies/* /app/build/md/ || print_error_and_exit "Error while synchronising dependencies"
 }
 
 
