@@ -1,0 +1,33 @@
+# Example of config file
+
+categories: # Categories label
+    1: process
+    2: factory
+    3: agile
+    4: database
+
+categories_colors: # colors in Hex
+    1: 1A73E8
+    2: 02569B
+    3: 71B958
+    4: E37400
+
+categories_icons: # Icons must be in icons/
+    1: process.svg
+    2: factory.svg
+    3: agile.svg
+    4: database.svg
+
+
+global:
+  location: http://YOUR_URL_LOCATION:PORT
+  name: Codelabs
+  welcome: Welcome Message
+  description: >
+    Your full description
+    can be write here :
+  author: Team Name
+  start_button: Start
+
+
+

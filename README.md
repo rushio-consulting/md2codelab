@@ -32,7 +32,30 @@ by this [google page](https://codelabs.developers.google.com/)
 
 * Google Codelabs - HTML and Markdown
 
-## [How do I use it ?](https://github.com/bwnyasse/md2codelab/blob/master/HOWTO.md) 
+## What to expect using this tool? 
+
+* creating codelabs using markdown specification and some extra add-ons
+* having a main codelabs web page dynamically build like this [one](https://codelabs.developers.google.com/) with a color that depend on category.
+
+## How do I use it ? 
+
+ The best way to start is to clone this repository. 
+ 
+ **To avoid a long way to setup your environment, You will need to install docker to continue !**
+ 
+Following are the list of command for your quick start : 
 
 
+    git clone https://github.com/bwnyasse/md2codelab.git
+    cd md2codelab/.quickstart/
+    
+    # You must complete file `md/config.yaml` to update the app url location and messages    
+    # Launch the compilation => output dir is build/
+    /bin/bash build.sh --launch
+
+    #if the build is done!
+    cd build/
+    
+    # You can launch any http server  
+    python -m SimpleHTTPServer    
  
