@@ -47,7 +47,7 @@ _print_info() {
 
 
 _build_ui() {
-    _print_title "Build Diff Tech Codelabs UI Angular"
+    _print_title "Build Codelabs UI Angular"
 
     if [[ -f $GITREPO ]];then
         cd $GITREPO && git pull
