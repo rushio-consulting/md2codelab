@@ -44,6 +44,15 @@ class Codelab {
     "feedbackLink": $feedbackLink
   }
   """;
+
+  String sumDuration() {
+    int value = 0;
+    steps.forEach((step){
+     value+=int.parse( step.duration);
+    });
+    return value.toString();
+  }
+
 }
 
 /// Model related to
