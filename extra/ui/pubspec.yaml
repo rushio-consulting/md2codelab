@@ -4,8 +4,7 @@ version: 0.0.1
 author: bwnyasse
 
 environment:
-  sdk: '>=2.0.0-dev.52.0 <2.0.0'
-
+  sdk: '>=2.1.0 <3.0.0'
 dependencies:
   angular: 5.0.0-alpha+12
   angular_components: 0.9.0-alpha+12
