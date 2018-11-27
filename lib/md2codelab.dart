@@ -63,9 +63,9 @@ Future<SingleParsingInfo> _executeSingle(
   metadata = codelab.metadata;
   if (quiver_strings.isNotEmpty(metadata)) {
     metadataAsmap = loadYaml(metadata) as Map;
-    if(metadataAsmap != null) {
-      metadataAsmap['duration'] = codelab.sumDuration();
-    }
+    // if(metadataAsmap != null) {
+    //   metadataAsmap['duration'] = codelab.sumDuration();
+    // }
     if (metadataAsmap != null && metadataAsmap['feedback'] != null) {
       codelab.feedbackLink = metadataAsmap['feedback'].toString();
     }
