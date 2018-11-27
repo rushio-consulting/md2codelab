@@ -45,13 +45,13 @@ class Codelab {
   }
   """;
 
-  String sumDuration() {
-    int value = 0;
-    steps.forEach((step){
-     value+=int.parse( step.duration);
-    });
-    return value.toString();
-  }
+  // String sumDuration() {
+  //   int value = 0;
+  //   steps.forEach((step){
+  //    value+=int.parse( step.duration);
+  //   });
+  //   return value.toString();
+  // }
 
 }
 
