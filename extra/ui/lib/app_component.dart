@@ -236,7 +236,7 @@ class AppComponent implements OnInit {
     });
   }
 
-  startCodelab(path) => window.open("$appLocation/$path", "_blank");
+  startCodelab(path) => window.open("$appLocation$path", "_blank");
 
   bool hasDuration(String duration) =>
       quiver_strings.isNotEmpty(duration) && duration != "null";
