@@ -1,12 +1,5 @@
 sudo: required
 
-language: dart
-
-dart:
-  # Install the dev release
-  #- dev
-  # Install a specific dev release, using a partial download URL - 1.16.0-dev.3.0
-  - "dev/release/2.0.0-dev.58.0"
 env:
   global:
      - CURRENT=$(pwd)
@@ -15,33 +8,23 @@ env:
 services:
   - docker
 
-before_install:
-  # Check current docker engine version
-  - docker --version
+stages:
+  - name: compil
+  - name: build
+    if: branch = master
+  - name: deploy
+    if: branch = master
 
-  # set env vars in the build settings to interact with repositories
-  # see https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings
-  - echo "Testing Docker Hub credentials"
-  - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 
-before_install:
-  - bash $CURRENT/.jobs/compil.sh
+jobs:
+  include:
+    - stage: compil
+      script: bash $CURRENT/.docker/compil.sh
+    - stage: build
+      script: bash $CURRENT/.docker/build.sh
+    - stage: deploy
+      script: bash $CURRENT/.docker/deploy.sh
+    
 
-install:
-  - cd $CURRENT/.docker
-  - docker pull ${DOCKER_REPOSITORY}:latest || true
-  - docker build -t ${DOCKER_REPOSITORY} --pull=true .
 
-#before_deploy:
-#   # CREATE GIT TAG
-#  - ./bin/github.sh
-#
 
-deploy:
-
-    # Deploy to docker hub
-    provider: script
-    script: bash $CURRENT/.docker/dockerhub.sh
-    skip_cleanup: true
-    on:
-      all_branches: true
