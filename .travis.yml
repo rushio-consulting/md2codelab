@@ -21,12 +21,7 @@ before_install:
   - bash $CURRENT/.jobs/compil-in-docker.sh
 
 install:
-
-    provider: script
-    script: bash $CURRENT/.docker/dockerbuild.sh
-    skip_cleanup: true
-    on:
-      branch: master  
+  - bash $CURRENT/.docker/dockerbuild.sh
 
 deploy:
 
