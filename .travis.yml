@@ -8,26 +8,23 @@ env:
 services:
   - docker
 
-before_install:
-  # Check current docker engine version
-  - docker --version
+stages:
+  - name: compil
+  - name: build
+    if: branch = master
+  - name: deploy
+    if: branch = master
 
-  # set env vars in the build settings to interact with repositories
-  # see https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings
-  - echo "Testing Docker Hub credentials"
-  - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 
-before_install:
-  - bash $CURRENT/.jobs/compil-in-docker.sh
+jobs:
+  include:
+    - stage: compil
+      script: bash $CURRENT/.docker/dockerbuild.sh
+    - stage: build
+      script: bash $CURRENT/.docker/build.sh
+    - stage: deploy
+      script: bash $CURRENT/.docker/deploy.sh
+    
 
-install:
-  - bash $CURRENT/.docker/dockerbuild.sh
 
-deploy:
 
-    # Deploy to docker hub
-    provider: script
-    script: bash $CURRENT/.docker/dockerhub.sh
-    skip_cleanup: true
-    on:
-      branch: master

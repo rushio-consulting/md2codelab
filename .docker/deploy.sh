@@ -6,12 +6,8 @@
 #===========================================================================================================#
 set -e
 
-if  [[ "$TRAVIS_BRANCH" == "master" ]]
-then
-  echo " Docker build for master branch"
-  cd $CURRENT/.docker && \
-    docker pull ${DOCKER_REPOSITORY}:latest || true && \
-    docker build -t ${DOCKER_REPOSITORY} --pull=true .
-fi
+echo " Docker Hub deployment for master branch"
+docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+docker push ${DOCKER_REPOSITORY}:latest
 
 exit 0
