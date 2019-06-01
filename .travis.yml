@@ -1,12 +1,5 @@
 sudo: required
 
-language: dart
-
-dart:
-  # Install the dev release
-  #- dev
-  # Install a specific dev release, using a partial download URL - 1.16.0-dev.3.0
-  - "dev/release/2.3.1"
 env:
   global:
      - CURRENT=$(pwd)
@@ -25,7 +18,7 @@ before_install:
   - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 
 before_install:
-  - docker run -v $CURRENT:/app registry.gitlab.com/santetis/open_source/santetis_image bash -c "/bin/bash /app/.jobs/compil.sh"
+  - bash $CURRENT/.jobs/compil-in-docker.sh
 
 install:
   - cd $CURRENT/.docker
