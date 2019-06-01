@@ -21,14 +21,12 @@ before_install:
   - bash $CURRENT/.jobs/compil-in-docker.sh
 
 install:
-  - cd $CURRENT/.docker
-  - docker pull ${DOCKER_REPOSITORY}:latest || true
-  - docker build -t ${DOCKER_REPOSITORY} --pull=true .
 
-#before_deploy:
-#   # CREATE GIT TAG
-#  - ./bin/github.sh
-#
+    provider: script
+    script: bash $CURRENT/.docker/dockerbuild.sh
+    skip_cleanup: true
+    on:
+      branch: master  
 
 deploy:
 
@@ -37,4 +35,4 @@ deploy:
     script: bash $CURRENT/.docker/dockerhub.sh
     skip_cleanup: true
     on:
-      all_branches: true
+      branch: master
