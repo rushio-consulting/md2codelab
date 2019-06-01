@@ -19,7 +19,7 @@ stages:
 jobs:
   include:
     - stage: compil
-      script: bash $CURRENT/.docker/dockerbuild.sh
+      script: bash $CURRENT/.docker/compil.sh
     - stage: build
       script: bash $CURRENT/.docker/build.sh
     - stage: deploy
