@@ -11,7 +11,6 @@ services:
 stages:
   - name: compil
   - name: build
-    if: branch = master
   - name: deploy
     if: branch = master
 
