@@ -21,8 +21,8 @@ jobs:
       script: bash $CURRENT/.docker/compil.sh
     - stage: build
       script: bash $CURRENT/.docker/build.sh
-    - stage: deploy
-      script: bash $CURRENT/.docker/deploy.sh
+    # - stage: deploy
+    #   script: bash $CURRENT/.docker/deploy.sh
     
 
 

@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'dart:html';
-import 'package:angular_components/model/selection/string_selection_options.dart';
 import 'package:angular/angular.dart';
 import 'package:angular/security.dart';
-import 'package:angular_components/angular_components.dart';
 import 'package:angular/core.dart' show Pipe, PipeTransform;
 import 'package:md2codelab_ui/utils.dart' as js_interop;
 import 'package:quiver/strings.dart' as quiver_strings;
@@ -25,14 +23,13 @@ class SearchResult {
 @Component(
   selector: 'my-app',
   styleUrls: const [
-    'package:angular_components/app_layout/layout.scss.css',
     'app_component.css'
   ],
   templateUrl: 'app_component.html',
-  directives: [materialDirectives, NgFor, NgIf, NgStyle],
+  directives: [ NgFor, NgIf, NgStyle],
   pipes: [SafeCss],
   providers: [
-    materialProviders,
+    
     const ClassProvider(AppService),
   ],
 )
@@ -60,13 +57,6 @@ class AppComponent implements OnInit {
   final bool deselectOnActivate = true;
   static List<String> categories = <String>[];
 
-  StringSelectionOptions<String> selectionCategoriesOptions =
-      new StringSelectionOptions(categories);
-
-  final SelectionModel<String> selectionCategoryModel =
-      new SelectionModel.single();
-
-  final SelectionModel<int> widthSelection = new SelectionModel<int>.single();
 
   ///
   final AppService appService;
@@ -136,32 +126,32 @@ class AppComponent implements OnInit {
     values.forEach((data) {
       categories.add(data.toString());
     });
-    selectionCategoriesOptions = new StringSelectionOptions(categories);
-    selectionCategoryModel.clear();
+
   }
 
   void _initDatas() {
     filteredDatas = datas.toList();
-    selectionCategoryModel.selectionChanges
-        .listen((onData) => _onSelectionCategoryModelChange());
+    // selectionCategoryModel.selectionChanges
+    //     .listen((onData) => _onSelectionCategoryModelChange());
   }
 
-  void _onSelectionCategoryModelChange() {
-    if (selectionCategoryModel.isEmpty) {
-      filteredDatas = datas.toList();
-      return;
-    }
+  // void _onSelectionCategoryModelChange() {
+  //   // if (selectionCategoryModel.isEmpty) {
+  //   //   filteredDatas = datas.toList();
+  //   //   return;
+  //   // }
 
-    selectionCategoryModelKey = appService.categoryKeyByValue(
-        cfg, selectionCategoryModel.selectedValues.first);
-    if (quiver_strings.isEmpty(selectionCategoryModelKey)) {
-      filteredDatas = datas.toList();
-    } else {
-      filteredDatas = datas.where((codelab) {
-        return codelab.category == selectionCategoryModelKey;
-      }).toList();
-    }
-  }
+  //   // selectionCategoryModelKey = appService.categoryKeyByValue(
+  //   //     cfg, selectionCategoryModel.selectedValues.first);
+  //       selectionCategoryModelKey ="";
+  //   if (quiver_strings.isEmpty(selectionCategoryModelKey)) {
+  //     filteredDatas = datas.toList();
+  //   } else {
+  //     filteredDatas = datas.where((codelab) {
+  //       return codelab.category == selectionCategoryModelKey;
+  //     }).toList();
+  //   }
+  // }
 
   String getUrl(String path) => "${window.location}$path";
 
@@ -185,20 +175,20 @@ class AppComponent implements OnInit {
     return res;
   }
 
-  int get width => widthSelection.selectedValues.isNotEmpty
-      ? widthSelection.selectedValues.first
-      : null;
+  // int get selectionCategoryModelKey => widthSelection.selectedValues.isNotEmpty
+  //     ? widthSelection.selectedValues.first
+  //     : null;
 
-  String get singleSelectedCategory =>
-      selectionCategoryModel.selectedValues.isNotEmpty
-          ? selectionCategoryModel.selectedValues.first
-          : null;
+  String get singleSelectedCategory => "";
+      // selectionCategoryModel.selectedValues.isNotEmpty
+      //     ? selectionCategoryModel.selectedValues.first
+      //     : null;
 
   /// Label for the button for single selection.
-  String get selectionCategoryLabel =>
-      selectionCategoryModel.selectedValues.length > 0
-          ? selectionCategoryModel.selectedValues.first
-          : appSelectCategoryLabel;
+  String get selectionCategoryLabel => "";
+      // selectionCategoryModel.selectedValues.length > 0
+      //     ? selectionCategoryModel.selectedValues.first
+      //     : appSelectCategoryLabel;
 
   void onSearch(dynamic event) {
     if (quiver_strings.isEmpty(event.target.value.toString())) {
@@ -236,7 +226,7 @@ class AppComponent implements OnInit {
     });
   }
 
-  startCodelab(path) => window.open("$appLocation$path", "_blank");
+  startCodelab(path) => window.open("$appLocation$path", "_self");
 
   bool hasDuration(String duration) =>
       quiver_strings.isNotEmpty(duration) && duration != "null";
