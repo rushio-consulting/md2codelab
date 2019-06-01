@@ -25,7 +25,7 @@ before_install:
   - docker login -u=$DOCKER_USERNAME -p=$DOCKER_PASSWORD
 
 before_install:
-  - bash $CURRENT/.jobs/compil.sh
+  - docker run -v $CURRENT:/app registry.gitlab.com/santetis/open_source/santetis_image bash -c "/bin/bash /app/.jobs/compil.sh"
 
 install:
   - cd $CURRENT/.docker

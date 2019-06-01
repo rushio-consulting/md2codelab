@@ -1,13 +1,8 @@
-FROM bwnyasse/dart:2.0.0-dev.54.0
+FROM registry.gitlab.com/santetis/open_source/santetis_image
 
-MAINTAINER bwnyasse
+MAINTAINER rushio-consulting
 
-#ARG proxy
-#
-#ENV http_proxy ${proxy}
-#ENV https_proxy ${proxy}
-
-RUN git clone https://github.com/bwnyasse/md2codelab.git /app \
+RUN git clone https://github.com/rushio-consulting/md2codelab.git /app \
     && cd /app \
     && pub get
 
