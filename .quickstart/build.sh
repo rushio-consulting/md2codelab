@@ -11,8 +11,8 @@ readonly BASEDIR=$( cd $( dirname $0 ) && pwd )
 readonly GITREPO=$BASEDIR/gr
 readonly BUILDDIR=$GITREPO/extra/ui/build
 readonly MDDIR=$BASEDIR/md
-readonly DOCKER_IMAGE='bwnyasse/dart:2.0.0-dev.54.0'
-readonly MD_2_CODELAB_PARSER='https://github.com/bwnyasse/md2codelab.git'
+readonly DOCKER_IMAGE='registry.gitlab.com/santetis/open_source/santetis_image'
+readonly MD_2_CODELAB_PARSER='https://github.com/rushio-consulting/md2codelab.git'
 
 usage() {
 	cat <<-EOF
