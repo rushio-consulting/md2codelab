@@ -18,13 +18,13 @@ categories_icons: # Icons must be in icons/
 
 
 global:
-  location: http://meteo.mipih.net/codelabs/
+  location: http://localhost:8000
   name: Codelabs
-  welcome: Codelabs @ Diff Tech Prodige !
+  welcome: Codelabs @
   description: >
     "Cette IHM fournit une prise en main sous forme de codelabs tutorial. Ci-dessous la liste des codelabs
     disponibles."
-  author: Team Diff Technique
+  author: Team Tech
   start_button_label: Démarrer
 
 

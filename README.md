@@ -7,20 +7,21 @@ Inspired by [googlecodelabs](https://github.com/googlecodelabs/), this repositor
 ![firstcodelab](firstcodelab.png)
 
 The generated codelabs are interactive instructional tutorials, which can be authored in markdown format
-using some extra add-ons. This repo contains all the tools and documentation you'll need
+using some extra add-ons. This repository contains all the tools and documentation you'll need
 for building your own codelabs.
 
-See the [extra/ui] directory for detailed description about the generated entry page.
+See the [extra/ui] directory for detailed description about the generated UI as entry page.
 
-## What is this ?
+## The purpose ?
 
 This project is completely inspired by [googlecodelabs](https://github.com/googlecodelabs/). 
-My personnal experience with the provided [tool](https://github.com/googlecodelabs/tools) by Google was not enough to 
-customize my generated codelab. And as far I was using their tool , I've faced a lot of
+
+Our personnal experience with the provided [tool](https://github.com/googlecodelabs/tools) by Google was not enough to 
+customize the generated codelab. And as far we were using the tool , we've faced a lot of
 bugs while parsing markdown file to codelab html. 
 
 Writing this tool, the goal was to provide another tool that supports all the features 
-avalaible in markdown. And a complete entry point, to display all the codelabs as provide
+avalaible in markdown. Thus a complete entry point, to display all the codelabs as provide
 by this [google page](https://codelabs.developers.google.com/)
 
 
@@ -35,7 +36,7 @@ by this [google page](https://codelabs.developers.google.com/)
 ## What to expect using this tool? 
 
 * creating codelabs using markdown specification and some extra add-ons
-* having a main codelabs web page dynamically build like this [one](https://codelabs.developers.google.com/) with a color that depend on category.
+* having a main codelabs web page dynamically build like this [one](https://codelabs.developers.google.com/)
 
 ## How do I use it ? 
 
@@ -46,14 +47,15 @@ by this [google page](https://codelabs.developers.google.com/)
 Following are the list of command for your quick start : 
 
 
-    git clone https://github.com/bwnyasse/md2codelab.git
+    git clone https://github.com/rushio-consulting/md2codelab.git
     cd md2codelab/.quickstart/
     
     # You must complete file `md/config.yaml` to update the app url location and messages    
+    # The default is http://localhost:8000
     # Launch the compilation => output dir is build/
     /bin/bash build.sh --launch
 
-    #if the build is done!
+    # if the build is done!
     cd build/
     
     # You can launch any http server  
