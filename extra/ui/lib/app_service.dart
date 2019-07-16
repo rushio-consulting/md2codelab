@@ -47,7 +47,7 @@ class Codelab {
 
 @Injectable()
 class AppService {
-  Future _readConfig() async {
+  _readConfig() async {
     var doc = await HttpRequest.getString("config.yaml");
     return loadYaml(doc.toString());
   }
@@ -84,7 +84,7 @@ class AppService {
     YamlMap categoriesColors;
     YamlMap categoriesIcons;
 
-    YamlMap map = await _readConfig();
+    var map = await _readConfig();
     if (map != null) {
       map.nodes.forEach((key, value) {
         switch (key.toString()) {
