@@ -1,7 +1,7 @@
 #!/bin/bash
 #============================================================================================================#
-#title           :  dockerhub.sh
-#description     :  Push to docker hub
+#title         :  dockerhub.sh
+#description   :  Push to docker hub
 #author		     :  bwnyasse
 #===========================================================================================================#
 set -e

@@ -7,6 +7,7 @@ import 'models.dart';
 
 /// Read the content [inputFile] of the markdown file
 /// and retrieve a document model
+/// TODO: Check if it is md vs adoc vs whatever else ...
 Future<MdDocument> read(String inputFile) async {
   String asHtml;
 
@@ -27,6 +28,7 @@ Future<String> _readFileContent(String filename) =>
 Future writeToDocument(String filename, String content) =>
     new File(filename).writeAsString(content, encoding: utf8);
 
+// TODO : Rename listMDFiles => listInputFiles...
 Future<List<String>> listMdFiles(String path) async {
   List<String> mdFiles;
   
@@ -39,6 +41,7 @@ Future<List<String>> listMdFiles(String path) async {
     directory
         .listSync(recursive: false, followLinks: false)
         .forEach((FileSystemEntity entity) {
+          // TODO: File to take in consideration .md , .adoc ... whatever else...
       if (entity.path.endsWith(".md")) {
         mdFiles.add(entity.path);
       } else {}
